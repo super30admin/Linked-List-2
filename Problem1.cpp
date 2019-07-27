@@ -42,7 +42,7 @@ public:
     }
    // class Solution {
     //public:
-        void reorderListOptimized(ListNode* head) {
+        void reorderListOptimized(ListNode* head) { //could not code the merging part. will do after class.
             if(head==NULL || head->next==NULL){
                 return;
             }
