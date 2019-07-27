@@ -1,0 +1,18 @@
+//Time complexity: O(1)
+//Space complexity: O(1)
+//Accepted in Leetcode: Yes
+
+//approach: put value of the next node to current node, link the current node to next of next node
+
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        if(node.next!=null)
+        {
+     node.val = node.next.val;
+     node.next = node.next.next;
+        }
+        else 
+            return;
+    }
+}
