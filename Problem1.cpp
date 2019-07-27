@@ -40,77 +40,42 @@ public:
             temp = temp->next;
         }
     }
-   // class Solution {
-    //public:
-        void reorderListOptimized(ListNode* head) { //could not code the merging part. will do after class.
-            if(head==NULL || head->next==NULL){
-                return;
-            }
-            ListNode* slow = head;
-            ListNode* fast = head->next;
-            while(fast!=NULL && fast->next!= NULL){
-                slow = slow->next;
-                fast = fast->next->next;
-            }
-
-            fast = reverseLinkedList(slow->next);
-            int x =2;
-            slow = head;
-            // ListNode* prev = NULL;
-            ListNode* temp = new ListNode(slow->val);
-            ListNode* prev = temp;
+    void reorderListOptimized(ListNode* head) { //Optimized. Runtime: O(N). Space: O(1)
+        if(head==NULL || head->next==NULL){
+            return;
+        }
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while(fast!=NULL && fast->next!= NULL){
             slow = slow->next;
-            while(fast!=NULL&&slow!=NULL){
-                if(x%2==0){
-                    ListNode* node = new ListNode(fast->val);
-                    node->next = new ListNode(prev->next->val);
-                    prev->next = node;
-                    fast = fast->next;
-                }else{
-                    ListNode* node = new ListNode(slow->val);
-                    node->next = new ListNode(prev->next->val);
-                    prev->next = node;
-                    slow = slow->next;
-                }
-                x++;
-            }
-
-            // while(fast!=NULL && slow!= NULL){
-            //     if(x%2==0){
-            //         cout<<fast->val<<" fast "<<slow->val<<" slow"<<endl;
-            //         temp = fast->next;
-            //         prev->next = fast;
-            //         fast->next = slow;
-            //         fast = temp;
-            //         prev = slow;
-            //         if(fast==NULL){cout<<"woah\n";}
-            //     }else{
-            //         cout<<fast->val<<" fast "<<slow->val<<" slow"<<endl;
-            //         prev = slow;
-            //         slow = slow->next;
-            //     }
-            //     x++;
-            // }
-            *head = *temp;
-            while(head!=NULL){
-                cout<<head->val<<endl;
-                head = head->next;
-            }
-            cout<<"outchi"<<endl;
+            fast = fast->next->next;
         }
 
-        ListNode* reverseLinkedList(ListNode* head){
-            ListNode* prev = NULL;
-            ListNode* curr = head;
-            while(curr!=NULL){
-                ListNode* next = curr->next;
-                curr->next = prev;
-                prev = curr;
-                curr = next;
-            }
-            return prev;
+        fast = reverseLinkedList(slow->next);
+        slow->next = NULL;
+        slow = head;
+        ListNode* fasttemp; ListNode* slowtemp;
+        while(slow!=NULL&&fast!=NULL){
+            slowtemp = slow->next;
+            fasttemp = fast->next;
+            slow->next = fast;
+            fast->next = slowtemp;
+            fast = fasttemp;
+            slow = slowtemp;
         }
-    };
+    }
+private:
+    ListNode* reverseLinkedList(ListNode* head){
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        while(curr!=NULL){
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
 };
 
 int main(){
