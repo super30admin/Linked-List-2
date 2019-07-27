@@ -1,0 +1,28 @@
+//Time complexity: O(n)
+//Space complexity: O(n)
+//Accepted in Leetcode: Yes
+
+//Idea:
+//if size of linked list is equal, then the first same element is returned
+//if the size is not equal, then the shorter list is traversed entirely and then the pointer is set to head of the longer list, which moves until the two pointers are equal
+//Logic is slightly similar to the linked list cycle concept
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+     ListNode ptr1 = headA;
+     ListNode ptr2 = headB;
+        
+    while(ptr1!=ptr2)
+    {
+        if(ptr1==null)
+            ptr1 =headB;
+        else
+            ptr1 = ptr1.next;
+        if(ptr2==null)
+            ptr2 = headA;
+        else
+            ptr2 = ptr2.next;
+    }
+        return ptr1;
+    }
+}
