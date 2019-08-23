@@ -1,0 +1,35 @@
+/*
+Time O(n)
+Space O(1)
+leetcode yes
+problem no
+
+copy the next node value into current node. when at second last node , make its next point to null.
+class Node
+{
+	int data ;
+	Node next;
+	Node(int d)
+	{
+		data = d;
+		next = null;
+	}
+}
+*/
+// This function should delete node from linked list. The function
+// may assume that node exists in linked list and is not last node
+// node: reference to the node which is to be deleted
+class GfG
+{
+    void deleteNode(Node node)
+    {   
+        while(node.next.next!=null)
+        {
+            node.data = node.next.data;
+            node = node.next;
+        }
+        node.data = node.next.data;
+        node.next = null;
+         // Your code here
+    }
+}
