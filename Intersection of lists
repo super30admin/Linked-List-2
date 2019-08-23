@@ -1,0 +1,47 @@
+/**
+Time O(n)
+Space O(1)
+leetcode yes
+problem no
+
+start increment heads of both the list. As soon as head of either list reaches null, put it at the start of other list and start to 
+increment them again. if they are equal we have found our intersection point.
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        ListNode head1 = headA;
+        ListNode head2 = headB;
+        
+        while(head1 != head2)
+        {
+            if(head1==null)
+                head1 = headB;
+            else 
+                head1= head1.next;
+            
+            if(head2==null)
+                head2 = headA;
+            
+            else 
+                head2= head2.next;
+            
+            
+        }
+            
+
+        return head1;
+        
+        
+    }
+
+}
