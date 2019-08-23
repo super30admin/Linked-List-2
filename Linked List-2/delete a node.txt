@@ -1,0 +1,8 @@
+public void delete(ListNode n){
+
+	if(n.next==null) n=null;
+	else{
+		n.val=n.next.val;
+		n.next=n.next.next;
+	}
+}
