@@ -49,7 +49,7 @@ public class IntersectionOfTwoLinkedLists {
 	  * Time: O(m+n)
       * Space: O(1)
 	  * Leetcode accepted: yes
-    	  * Problems faced: No
+      * Problems faced: No
 	  */
 	 public static ListNode getIntersectionNodeOptimized(ListNode headA, ListNode headB) {
 		 ListNode currA = headA, currB = headB;
@@ -66,7 +66,7 @@ public class IntersectionOfTwoLinkedLists {
 			 currB = currB.next;
 		 }
 		 
-		 //Which ever list has the longest length, traverse through that list starting from head one step at a time for the difference in lengths
+		 //Which ever list has the longest length, traverse through that list starting from head one step at a time for the difference in lengths times
 		 if(lenA > lenB) {
 			 for(int i=0; i<lenA-lenB; i++) {
 				 headA = headA.next;
@@ -77,7 +77,7 @@ public class IntersectionOfTwoLinkedLists {
 			 }
 		 }
 		 
-		 //Now, traverse thru both lists simultaneously to see if they intersect
+		 //Now, traverse through both lists simultaneously to see if they intersect
 		 while(headA != null && headB != null) {
 			 if(headA.equals(headB)) {
 				 return headA;
