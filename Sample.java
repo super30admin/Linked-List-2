@@ -60,3 +60,36 @@ public class Solution {
         return null;
     }
 }
+
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes, no of times submit was done to be accepted: 1
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+//Approach:
+//starting from the node to be deleted to the end of list, copy the value of next node to current node.
+//when we reach the last but one node, we remove the last node by making last but one node point to null.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        while(node.next!=null){
+            node.val=node.next.val;
+            if(node.next.next==null){
+                node.next=null;
+            }
+            else{
+                node=node.next;
+            }
+        }
+    }
+}
