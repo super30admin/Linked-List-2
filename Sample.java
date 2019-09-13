@@ -93,3 +93,66 @@ class Solution {
         }
     }
 }
+
+// Time Complexity : O(n)
+// Space Complexity : O(n), considering recursion stack
+// Did this code successfully run on Leetcode : Yes, no of times submit was done to be accepted: 3
+// Any problem you faced while coding this : No
+
+
+// Your code here along with comments explaining your approach
+//Approach:
+//1. reverse the second half of the list.
+//2. now rearrange the pointers to get the output.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null || head.next==null) return;
+        int length=0;
+        ListNode a = head;
+        while(a!=null){ // find the length of list
+            a=a.next;
+            length++;
+        }
+        a=head;
+        int mid=length/2-1;
+        int count=0;
+        while(count<mid){ // assign a pointer to mid of list
+            a=a.next;
+            count++;
+        }
+        ListNode b=reverse(a.next, null); // reverse the second half of list
+        
+        a.next=null;
+        a=head;
+        ListNode t1=null;
+        ListNode t2=null;
+        while(true){ // change order of each node in 2 lists
+            t1=a.next;
+            a.next=b;
+            t2=b.next;
+            if(t1==null){
+                break;
+            }
+            b.next=t1;
+            a=t1;
+            b=t2;
+        }
+    }
+    
+    private ListNode reverse(ListNode curr, ListNode prev){
+        if(curr==null){
+            return prev;
+        }
+        ListNode node = reverse(curr.next, curr);
+        curr.next=prev;
+        return node;
+    }
+}
