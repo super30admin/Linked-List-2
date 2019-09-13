@@ -1,5 +1,5 @@
 /**
- * The time complexity is O(N) and the space complexity is O(1).
+ * The time complexity is O(m+n) and the space complexity is O(1).
  *
  * We first count the number of nodes in each linked list. Then we move difference of length steps from the head of longest linked list.
  * Then we move each step of both the lists until we find the common node.
