@@ -55,5 +55,5 @@ class Solution(object):
                 # checking if p1.val same as p2.val
         while (p1.val == p2.val):
             p1 = p1.next
-            p2.p2.next
+            p2 = p2.next
         return p1.val
