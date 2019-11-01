@@ -35,5 +35,25 @@ class Solution(object):
         return pointer_A
         
         
+# using hash_set
+
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        if headA==None or headB == None:
+            return None
+        hash_set=set()
+        while headA!=None:
+            hash_set.add(headA)
+            headA=headA.next
         
+        while headB!=None:
+            if headB in hash_set:
+                return headB
+            else:
+                headB=headB.next
+        return None
 
