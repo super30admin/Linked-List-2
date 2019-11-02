@@ -1,29 +1,46 @@
 # Definition for singly-linked list.
-# class ListNode:
+# class ListNode(object):
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
 
-#Wrong answer on leetcode
-#Time Complexity - More than O(n) since I am creating a queue and traversing through queue again
-#Space complexity - O(n) as I am creating a queue
+#Accepted on leetcode
+#Time Complexity - O(n) as we are traversing through every node
+#Space complexity - O(1) as we are simply creating two pointers
 
-
-class Solution:
-    def reorderList(self, head: ListNode) -> None:
+class Solution(object):
+    def reorderList(self, head):
         """
-        Do not return anything, modify head in-place instead.
+        :type head: ListNode
+        :rtype: None Do not return anything, modify head in-place instead.
         """
+        def reverse_list(head):
+            if head == None:
+                return None
+            prev = None
+            current = head
+            next = head.next
+            while next != None:
+                current.next = prev
+                prev = current
+                current = next
+                next = current.next
+            current.next = prev
+            return current
         if head == None or head.next == None:
             return None
-        queue = []
-        pointer = head
-        while pointer != None:
-            queue.append(pointer.val)
-        pointer = head
-        while queue != None:
-            pointer.val = queue.pop(0)
-            pointer = pointer.next
-            pointer.val = queue.pop()
-            pointer = pointer.next
+        slow = head
+        fast = head
+        while fast.next != None and fast.next.next != None:
+            slow = slow.next
+            fast = fast.next.next
+        fast = reverse_list(slow.next)
+        slow.next = None
+        slow = head
+        while slow != None and fast != None:
+            temp = slow.next
+            slow.next = fast
+            fast = fast.next
+            slow.next.next = temp
+            slow = temp
         return head
