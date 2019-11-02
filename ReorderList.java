@@ -25,7 +25,8 @@ class Solution {
         ListNode p1=  head;
         ListNode p2 = head;
 
-        while(p1 != null && p2 != null ){
+//        checking if the fast.next and fast.next.next conditions
+        while(p1 != null && p2 != null && p2.next != null && p2.next.next ){
             p1 = p1.next;
             p2 = p2.next.next;
         }
@@ -43,7 +44,7 @@ class Solution {
             next = next.next;
         }
 
-        //Here problem: trying to merge the 2 lists one by one by messign the pointers
+        //Here problem: trying to merge the 2 lists one by one but I am messign the pointers
         p1=head;
         p2=prev.next;
         while(p1!=prev){
