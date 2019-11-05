@@ -9,6 +9,8 @@
 /* 143. Reorder List
 Time Complexity: O(n)
 Space Complexity: O(1)
+fast!=null handles the case when length of  linked list is even
+fast.next!=null handles the case when length of linked list is odd
 */
 class Solution {
     public void reorderList(ListNode head) {
@@ -17,6 +19,7 @@ class Solution {
 
         ListNode slow = head;
         ListNode fast = head;
+        
         while(fast.next != null && fast.next.next != null){
             slow = slow.next;
             fast = fast.next.next;
