@@ -16,6 +16,9 @@ public class Solution {
         if(headA == null || headB == null)
             return null;
         
+        if(headA == headB)
+            return headA;
+        
         while(headA != null)
         {
             set.add(headA);
