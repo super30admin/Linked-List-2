@@ -4,35 +4,36 @@
 //      getIntersectionNode() - O(m + n)
 //      
 // Space Complexity :
-//      getIntersectionNode() - O(n)
+//      getIntersectionNode() - O(1)
 //
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
 public class Solution {
-    HashSet<ListNode> set = new HashSet<>();
-    
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
         if(headA == null || headB == null)
             return null;
         
         if(headA == headB)
             return headA;
         
-        while(headA != null)
-        {
-            set.add(headA);
-            headA = headA.next;
-        }
+        ListNode a = headA, b = headB;
         
-        while(headB != null)
+        while(a != b)
         {
-            if(set.contains(headB))
-                return headB;
+            if(a == null)
+                a = headB;
+            if(b == null)
+                b = headA;
             
-            headB = headB.next;
+            if(a != b)
+            {
+                a = a.next;
+                b = b.next;
+            }
         }
         
-        return null;
+        return a;
     }
 }
