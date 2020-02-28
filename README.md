@@ -1,6 +1,34 @@
 # Linked-List-2
 
-## Problem1 (https://leetcode.com/problems/reorder-list/)
+## Problem1 (https://leetcode.com/problems/binary-search-tree-iterator/)
+Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
+
+Calling next() will return the next smallest number in the BST.
+
+ 
+
+Example:
+
+
+
+BSTIterator iterator = new BSTIterator(root);
+iterator.next();    // return 3
+iterator.next();    // return 7
+iterator.hasNext(); // return true
+iterator.next();    // return 9
+iterator.hasNext(); // return true
+iterator.next();    // return 15
+iterator.hasNext(); // return true
+iterator.next();    // return 20
+iterator.hasNext(); // return false
+ 
+
+Note:
+
+next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.
+You may assume that next() call will always be valid, that is, there will be at least a next smallest number in the BST when next() is called.
+
+## Problem2 (https://leetcode.com/problems/reorder-list/)
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,
 reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
 
@@ -13,7 +41,7 @@ Example 2:
 
 Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 
-## Problem2 (https://practice.geeksforgeeks.org/problems/delete-without-head-pointer/1)
+## Problem3 (https://practice.geeksforgeeks.org/problems/delete-without-head-pointer/1)
 You are given a pointer/ reference to the node which is to be deleted from the linked list of N nodes. The task is to delete the node. Pointer/ reference to head node is not given. 
 
 Note: No head reference is given to you.
@@ -48,7 +76,7 @@ Output:
 Explanation:
 Testcase 1: After deleting 20 from the linked list, we have remaining nodes as 10, 4 and 30
 
-## Problem3  (https://leetcode.com/problems/intersection-of-two-linked-lists/)
+## Problem4  (https://leetcode.com/problems/intersection-of-two-linked-lists/)
 Write a program to find the node at which the intersection of two singly linked lists begins.
 
 For example, the following two linked lists:
