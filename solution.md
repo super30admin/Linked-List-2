@@ -70,7 +70,7 @@ O(n)
 O(1)
 
 ## Did this code successfully run on Leetcode :
-No. 
+No. /
 AttributeError: 'NoneType' object has no attribute 'next'
 
 ## Any problem you faced while coding this :
