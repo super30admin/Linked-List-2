@@ -43,33 +43,75 @@ No.
  
  # Problem 2
 ## Time Complexity :
-O()
+O(1)
 
 ## Space Complexity :
-O()
+O(1)
 
 ## Did this code successfully run on Leetcode :
+Ran successfully on Geeks for geeks.
 
 
 ## Any problem you faced while coding this :
-
+No.
 
 ## Your code here along with comments explaining your approach
 ### Solution:
+          def deleteNode(curr_node):
+               curr_node.data=curr_node.next.data #Replacing curr value with next node value
+               curr_node.next=curr_node.next.next #Removing next node 
 
 
  # Problem 3
 ## Time Complexity :
-O()
+O(n)
 
 ## Space Complexity :
-O()
+O(1)
 
 ## Did this code successfully run on Leetcode :
-
+No. 
+AttributeError: 'NoneType' object has no attribute 'next'
 
 ## Any problem you faced while coding this :
-
+Yes. Cannot solve the error.
 
 ## Your code here along with comments explaining your approach
 ### Solution:
+        class Solution:
+            def reorderList(self, head: ListNode) -> None:
+                """
+                Do not return anything, modify head in-place instead.
+                """
+                #Edge case
+                if(not head or not head.next):
+                    return None
+
+                slow,fast=head,head #Initializing pointers
+                #Finding middle
+                while(fast.next!=None and fast.next.next):
+                    slow=slow.next
+                    fast=fast.next.next
+
+                fast=self._reverse(slow.next)    #Calling reverse function
+                slow.next=None
+                slow=head
+                #Logic
+                while(fast!=None):
+                    curr=slow.next   #ERROR!
+                    slow.next=fast
+                    fast=fast.next
+                    slow.next.next=curr
+                    slow=curr
+
+
+            def _reverse(self,head):
+                curr=head
+                prev=None
+                fast=head.next
+                while(fast!=None):
+                    curr.next=prev
+                    prev=curr
+                    fast=fast.next
+                curr.next=prev
+                return curr
