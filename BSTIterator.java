@@ -1,3 +1,4 @@
+// =================================== Controlled DFS ====================================================
 /**
 Time complexity: O(N)
 Space: O(H) stack space
@@ -32,6 +33,40 @@ class BSTIterator {
             stack.push(node);           // push node to stack
             node = node.left;           //iterate to left
         }
+    }
+}
+// ====================================== Inorder traversal ================================================
+/**
+Time: O(N), space:O(N)
+Algorithm:
+=========
+1. Use arraylist to store inorder of the tree
+2. Use pointer to keep track of next() and hasNext() calls
+ */
+class BSTIterator {
+    List<Integer> arr;                  // arraylist to store inorder
+    int ptr;
+    public BSTIterator(TreeNode root) {
+        arr = new ArrayList<>();
+        ptr = 0;
+        inorder(root);
+    }
+    
+    private void inorder(TreeNode root) {           //inorder of BST
+        if(root == null) return;
+        inorder(root.left);
+        arr.add(root.val);
+        inorder(root.right);
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        return arr.get(ptr++);                  // return next
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return ptr != arr.size();           // return if already traversed the complete tree or not
     }
 }
 
