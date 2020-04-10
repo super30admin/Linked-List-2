@@ -1,0 +1,22 @@
+Time complexity: O(1)
+Space complexity: O(1)
+
+
+Steps:
+1. Base case: we will check for node!=null && node.next!=null
+1. Firstly we will copy the node.next data into node
+2. Then we will point nopde.next to node.next.next
+
+if(node!=null && node.next!=null){
+
+  ListNode temp = node;
+  temp.data = node.data;
+  
+  node.data = node.next.data;
+  node.next = node.next.next;
+}
+
+Step: If node is last node from the list, we will simply set the node value to null.
+if(node.next==null){
+  node = null;
+}
