@@ -1,0 +1,35 @@
+Time complexity: O(m+n)
+Space complexity: O(1)
+Did this code submitted successfully on leetcode: Yes
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        //Edge case
+        if(headA == null || headB == null) 
+            return null;
+        
+        //Pointer Initialization
+        ListNode a = headA;
+        ListNode b = headB;
+    
+        //Iterate and move the pointers
+        while( a != b){
+            a = a == null? headB : a.next;
+            b = b == null? headA : b.next;    
+        }
+
+    return a;
+    }
+}
