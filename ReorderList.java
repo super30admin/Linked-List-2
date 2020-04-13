@@ -57,7 +57,6 @@ class Solution {
     //time - O(n) with constant space
     //merges 1-2-3 and 4-5 into 1-4-2-5-3
     //merges 1-2-3 and 4-5-6 into 1-4-2-5-3-6
-    //the other possiblity of 2nd list being larger is not handled as it won't occur in this problem
     private ListNode mergeList(ListNode first, ListNode second) {
         ListNode headA = first;
         ListNode headB = second;
@@ -69,6 +68,11 @@ class Solution {
             temp1 = headA.next;
             headA.next = headB;
             temp2 = headB.next;
+            //the other possiblity of 2nd list being larger is not handled as it won't occur in this problem
+            // if(temp1 == null)
+            // {
+            //     break;
+            // }
             headB.next = temp1;
             headA = temp1;
             headB = temp2;
