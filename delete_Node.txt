@@ -1,0 +1,11 @@
+/* As we are only given reference to the given node and also the node is not the last value, so node.next.next wont give any error, so just copy node next value to curr node and change node next refernce to node next to  next */
+
+class GfG
+{
+    void deleteNode(Node node)
+    {
+      node.data = node.next.data;
+      node.next = node.next.next;
+         
+    }
+}

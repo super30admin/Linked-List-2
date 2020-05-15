@@ -1,0 +1,41 @@
+// Time Complexity : O(1)
+// Space Complexity : O(h)  height of tree
+// Did this code successfully run on Leetcode : Yes 
+// Any problem you faced while coding this : No
+
+/* first add all the left subtree and pop out one node and submit its right and its subsequent left tree */
+
+class BSTIterator {
+     Stack<TreeNode> st;
+    public BSTIterator(TreeNode root) {
+        st = new Stack<>();
+        while(root != null){
+            st.push(root);
+            root = root.left;
+        } 
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        TreeNode t = st.pop();
+        int val = t.val;
+        t = t.right;
+        while(t != null){
+            st.push(t);
+            t = t.left;
+        }
+        return val;
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !st.isEmpty();
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */
