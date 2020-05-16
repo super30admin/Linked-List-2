@@ -1,8 +1,8 @@
 // ## Problem4  (https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
-// Time Complexity :
-// Space Complexity :
-// Did this code successfully run on Leetcode :
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
 
 const getIntersectionNode = function(headA, headB) {
     if(!headA || !headB) return null;
