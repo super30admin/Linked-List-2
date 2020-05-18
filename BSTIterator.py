@@ -6,10 +6,7 @@
 #         self.right = right
 #time complexity:O(n)
 #Space complexity::O(n)
-# Initialize an empty array that will contain the nodes of the binary search tree in the sorted order.
-# We traverse the binary search tree in the inorder fashion and for each node that we process, we add it to our array nodes. Note that before processing a node, its left subtree has to be processed (or recursed upon) and after processing a node, its right subtree has to be recursed upon.
-# Once we have all the nodes in an array, we simply need a pointer or an index in that array to implement the two functions next and hasNext. Whenever there's a call to hasNext, we simply check if the index has reached the end of the array or not. For the call to next function, we simply return the element pointed by the index. Also, after a the next function call is made, we have to move the index one step forward to simulate the progress of our iterator.
-class BSTIterator:
+
 
     def __init__(self, root: TreeNode):
         self.q=[]
