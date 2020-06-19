@@ -1,4 +1,32 @@
+/*
+
+// withour hashmap
+    Space Complexity : O(1)
+    time complexity :O(N+M) M = length of linkedlist 1 and N = size of linkedlist 2
+    worked on leetcode : YES
+// with hashmap
+
+    space compleity : O(N)
+    time complexity : O(M+N)
+    worked on leetcode : YES
+*/
+
 public class IntersectionLinkedList {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        HashSet<ListNode>  set  =  new HashSet<ListNode>();
+        
+        while(headA !=  null){
+            set.add(headA);
+            headA =  headA.next;
+        }
+        
+        while(headB != null){
+            if(set.contains(headB)) return headB;
+            headB = headB.next;
+        }
+        return null;
+        
+    }
     public ListNode getIntersectionNode_using_length(ListNode headA, ListNode headB) {
         ListNode curr  =  headA;
         int countA=0;
