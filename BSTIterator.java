@@ -3,6 +3,10 @@
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this :No
 
+//Code Explanation:
+//First addedd all the left nodes to the stack.Whenever we call next method, called pop() and then
+//visited that node right node
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
