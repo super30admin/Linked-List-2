@@ -5,6 +5,10 @@
 
 
 // Your code here along with comments explaining your approach
+//Got the length of the both Linked lists by traveserving through the all nodes.
+//Which ever linked list has more elements,traversed that number of elements and then
+//then traversed both linked list at the same time. Finally,if both linked lists meet
+//at the same point(both are same) which means address are same,then return that node.
 
 /**
  * Definition for singly-linked list.
