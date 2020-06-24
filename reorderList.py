@@ -1,5 +1,5 @@
-# Time Complexity : Average O(1) for next and hasNext
-# Space Complexity : O(h), where h is the max height of the tree.
+# Time Complexity : O(n), where n is the length of the list.
+# Space Complexity : O(1)
 # Did this code successfully run on Leetcode : yes
 # Any problem you faced while coding this : no
 
