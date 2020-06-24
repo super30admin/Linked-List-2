@@ -1,0 +1,53 @@
+
+
+ //Time Complexity : O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :No
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int sizeA =0;int sizeB=0;
+        ListNode* ptrA=headA; ListNode* ptrB = headB;
+        while(ptrA!=NULL){
+            sizeA++;
+            ptrA=ptrA->next;
+        }
+        while(ptrB!=NULL){
+            sizeB++;
+            ptrB=ptrB->next;
+        }
+        
+        int diff=0;        
+        if(sizeB>sizeA){
+            diff = sizeB-sizeA;
+            int count=0;
+            while(count<diff){
+                headB=headB->next;
+                count++;
+            }
+        }
+        
+        else{
+            diff = sizeA-sizeB;
+            int count=0;
+            while(count<diff){
+                headA=headA->next;
+                count++;
+            }
+        }
+        
+        while(headA!=NULL && headB!=NULL){
+            if(headA==headB)
+                break;
+            headA=headA->next;
+            headB=headB->next;
+
+        }
+        
+        return headA;
+        
+        
+    }
+};
