@@ -1,0 +1,44 @@
+// Time Complexity : O(n) - to find the middle, O(n) - reverse, O(n)- merge.
+// Space Complexity : O(n) - to store the other half.
+// Did this code successfully run on Leetcode : Yes.
+// Any problem you faced while coding this : No
+// Your code here along with comments explaining your approach: find the middle of the list, reverse the second half and merge the elements in order.
+
+
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null || head.next==null) return;
+        //find the middle
+        ListNode slow=head;ListNode fast=head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        //reverse the list
+         fast=reverse(slow.next);
+        slow.next=null;
+        //Merge the two lists accordingly
+        slow=head;
+        ListNode t;
+        while(fast!=null){
+              t=slow.next;
+              slow.next=fast;
+              fast=fast.next;
+              slow.next.next=t;
+              slow=t;
+              
+       }
+    }
+    
+    private ListNode reverse(ListNode r){
+        ListNode prev=null;ListNode temp;
+        while(r!=null){
+            temp=r.next;
+            r.next=prev;
+            prev=r;
+            r=temp;
+        }
+        
+        return prev;
+    }
+}

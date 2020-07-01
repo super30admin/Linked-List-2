@@ -1,0 +1,36 @@
+// Time Complexity : O(maxlength(A,B)) WHERE A,B are the list nodes headA and headB respectively.
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :No
+
+
+// Your code here along with comments explaining your approach: Find out the lengths of A and B. Move the extra length until lenA=lenB of the greater(in terms of length) list.Now until we find a point where the values are the same we continue progressing till the last and return the intersection point.
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+       ListNode curr=headA;
+       int lenA=0;int lenB=0;
+        while(curr!=null){
+            lenA++;
+            curr=curr.next;
+        }
+        curr=headB;
+        while(curr!=null){
+            lenB++;
+            curr=curr.next;
+        }
+        while(lenA>lenB){
+            headA=headA.next;
+            lenA--;
+        }
+        while(lenA<lenB){
+            headB=headB.next;
+            lenB--;
+        }
+        while(headA!=headB){
+            headA=headA.next;
+            headB=headB.next;
+        }
+        
+        return headA;
+}
+}
