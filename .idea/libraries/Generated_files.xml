@@ -3,10 +3,12 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/problem1-bst-iterator.js" />
+        <item url="file://$PROJECT_DIR$/problem2-reorder-list.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/problem1-bst-iterator.js" />
+      <root url="file://$PROJECT_DIR$/problem2-reorder-list.js" />
     </CLASSES>
     <SOURCES />
   </library>
