@@ -4,11 +4,13 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/problem1-bst-iterator.js" />
         <item url="file://$PROJECT_DIR$/problem2-reorder-list.js" />
+        <item url="file://$PROJECT_DIR$/problem3-delete-without-head-pointer.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/problem1-bst-iterator.js" />
       <root url="file://$PROJECT_DIR$/problem2-reorder-list.js" />
+      <root url="file://$PROJECT_DIR$/problem3-delete-without-head-pointer.js" />
     </CLASSES>
     <SOURCES />
   </library>
