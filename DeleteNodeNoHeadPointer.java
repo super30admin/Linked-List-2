@@ -30,6 +30,7 @@ Output:
 
 Explanation:
 Testcase 1: After deleting 20 from the linked list, we have remaining nodes as 10, 41 and 30
+ * https://practice.geeksforgeeks.org/editorial.php?pid=700161#_=_
  */
 
 
