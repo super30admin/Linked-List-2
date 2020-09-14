@@ -20,10 +20,10 @@ class BSTIterator:
         self.stack = []
         self.dfs(root)
 
-    #pop the top element on the stack which would be the leftmost node you are at
-    #check if the popped node has a right value?
-    #if it does, call dfs on it's right node and finally return 
-    #the value of the next smallest number found
+    #Pop the top element on the stack which would be the leftmost node you are at.
+    # Check if the popped node has a right value?
+    # If it does, call dfs on it's right node and finally return 
+    # The value of the next smallest number found
     def next(self) -> int:
         """
         @return the next smallest number
