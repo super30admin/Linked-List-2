@@ -1,0 +1,64 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+// Iterative inorder traversal; TC: O(N) && SP: O(height of the tree)
+class BSTIterator {
+    
+    Stack<TreeNode> stack;
+    public BSTIterator(TreeNode root) {
+        
+        stack = new Stack<TreeNode>();
+    //    stack.push(root);
+        dfs(root);
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        if(!hasNext()) return -1;
+        TreeNode node = stack.pop();
+        
+    // before we return the next node, we go its right branch to add left branch  of right node into the stack
+        TreeNode right = node.right;
+        
+        if(right != null){
+          dfs(right);
+        }
+        
+        return node.val;
+        
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+    
+    public void dfs(TreeNode root){
+        
+        while(root != null){
+            stack.push(root);
+            root = root.left;
+        }
+        
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */
