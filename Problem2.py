@@ -1,5 +1,5 @@
 # Time Complexity: O(N)
-# Space Complexity: O(N)
+# Space Complexity: O(1)
 # Passed Leetcode
 
 import math
@@ -16,27 +16,49 @@ class Solution:
         if not head:
             return
         
-        node_list = []
+        if not head.next or not head.next.next:
+            return head
         
-        while head:
+        p2 = p1 = head
+        
+        while p2 and p2.next:
             
-            node_list.append(head)
+            p1 = p1.next
+            p2 = p2.next.next
+        
+        
+        new_head = p1.next
+        p1.next = None
+        
+        p1 = new_head
+       
+        p2 = p1.next
+        
+        p1.next = None
+        
+        while p2:
             
-            head = head.next
-        m = len(node_list)
-        for i in range(math.ceil(m / 2)):
+            temp = p2.next
             
-            if m - 1 - i - i <= 1 :
-                last = node_list[m - 1 - i]
-                last.next = None
-                return
-            first = node_list[i]
-            last = node_list[m - 1 - i]
+            p2.next = p1
             
-            temp = first.next
+            p1 = p2
+            p2 = temp
+        
+        
+        while p1:
             
-            first.next = last
+            temp1 = head.next
+            temp2 = p1.next
+            head.next = p1
+            p1.next = temp1
             
-            last.next = temp
+            p1 = temp2
+            head = temp1
+        
+        
+            
+        
+        
         
         
