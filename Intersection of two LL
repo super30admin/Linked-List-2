@@ -1,0 +1,63 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+// Time complexity: O(m+n); space complexity: O(1)
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        //base cases
+        if(headA == null || headB == null) return null;
+
+    // find the difference of length of two list, move the pointer for node with greater length forward to cover the difference of length
+        
+// then we use the technique when length of two lists are equal, move two pointers until pointers intersect and point to same node 
+        ListNode ptra = headA;
+        ListNode ptrb = headB;
+        
+        int lengthA = 0;
+        while(ptra != null){
+            lengthA++;
+            ptra = ptra.next;
+        }
+        
+        int lengthB = 0;
+        while(ptrb != null){
+            lengthB++;
+            ptrb = ptrb.next;
+        }
+        
+        int length = lengthA > lengthB ? lengthA - lengthB : lengthB - lengthA;
+        ptra = headA;
+        ptrb = headB;
+        
+        if(lengthA > lengthB){
+            while(length >= 1){
+                ptra = ptra.next;
+                length--;
+            }
+        }
+        
+           if(lengthB > lengthA){
+            while(length >= 1){
+                ptrb = ptrb.next;
+                length--;
+            }
+        }
+        
+        while(ptra != ptrb){
+            ptra = ptra.next;
+            ptrb = ptrb.next;
+        }
+        
+        return ptra;
+        
+    }
+}
