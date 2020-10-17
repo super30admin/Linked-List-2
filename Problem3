@@ -1,0 +1,41 @@
+//Time complexity: O(n)
+//Space complexity: O(1)
+//Accepted in Leetcode: Yes
+
+//Idea-> Intersection happens at one point after which the elements in both lists are same, so to reach that point we first traverse the list where the difference in length is matched(i.e. the longer list)
+//After that, when equal number of elements are left in both, keep traversing the list till you get that the elements are equal
+1. Get the lengths of both the linked lists
+2. Traverse the longer linked list
+3. Once headA = headB, the intersection point is reached
+4. Return headA
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+       int lenA = length(headA), lenB = length(headB);
+    // move headA and headB to the same start point
+    while (lenA > lenB) {
+        headA = headA.next;
+        lenA--;
+    }
+    while (lenA < lenB) {
+        headB = headB.next;
+        lenB--;
+    }
+    // find the intersection until end
+    while (headA != headB) {
+        headA = headA.next;
+        headB = headB.next;
+    }
+    return headA;
+}
+
+private int length(ListNode node) {
+    int length = 0;
+    while (node != null) {
+        node = node.next;
+        length++;
+    }
+    return length;
+}   
+    
+}
