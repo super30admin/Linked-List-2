@@ -1,0 +1,81 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null || head.next==null || head.next.next==null) head=head;
+        else{
+            Stack<ListNode> s1=new Stack<ListNode>();
+        Stack<ListNode> s2=new Stack<ListNode>();
+        ListNode temp=head;
+        int c=0;
+        while(temp!=null){
+            s1.push(temp);
+            temp=temp.next;
+            c++;
+        }
+        System.out.println(c);
+        for(int i=0;i<c/2;i++){
+            s2.push(s1.pop());
+        }
+        if(c%2==0)
+        {
+            head=s2.pop();
+            temp=head;
+            boolean flag=true;
+            while(!s2.isEmpty() || !s1.isEmpty()){
+                if(flag==true){
+                    temp.next=s1.pop();
+                    flag=false;
+                    temp=temp.next;
+                }
+                else{
+                    temp.next=s2.pop();
+                    flag=true;
+                    temp=temp.next;
+                }
+            }
+            temp.next=null;
+        }
+        else
+        {
+            head=s1.pop();
+            temp=head;
+            boolean flag=true;
+            while(!s2.isEmpty() || !s1.isEmpty()){
+                if(flag==true){
+                    temp.next=s2.pop();
+                    flag=false;
+                    temp=temp.next;
+                }
+                else{
+                    temp.next=s1.pop();
+                    flag=true;
+                    temp=temp.next;
+                }
+            }
+             temp.next=null;
+        }
+        temp=head;
+        Stack<ListNode> s4=new Stack<ListNode>();
+        while(temp!=null){
+            s4.push(temp);
+            temp=temp.next;
+        }
+        head=s4.pop();
+        temp=head;
+        while(!s4.isEmpty()){
+            temp.next=s4.pop();
+            temp=temp.next;
+        }
+        temp.next=null;
+        System.out.println(head.val);
+        }
+        
+    }
+}
