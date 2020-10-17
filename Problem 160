@@ -1,0 +1,56 @@
+/*
+Time complexity: O(n)
+
+Space Complexity: O(n)
+
+Leetcode sucessful.
+Runtime: 8 ms, faster than 13.92% of Java online submissions for Intersection of Two Linked Lists.
+Memory Usage: 39.1 MB, less than 25.71% of Java online submissions for Intersection of
+
+
+Approach:
+
+Put every node of first linkedlist in the hashmap.
+now, iterate throguh the 2nd linkedlist, and check if the linkeddlist element is present in the hashmap if yes, return that element.
+
+*/
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        ListNode tempa =headA;
+        ListNode tempb=headB;
+        
+        HashSet<ListNode> hs = new HashSet<>();
+        if(tempa==null|| tempb==null) return null;
+        if(tempa==tempb) return tempa;
+        while(tempa!=null)
+        {
+            hs.add(tempa);
+            tempa=tempa.next;
+            
+        }
+        
+        while(tempb!=null)
+        {
+            if(hs.contains(tempb)){
+                return tempb;
+                
+            }
+               tempb=tempb.next;
+        }
+        return null;
+        
+    }
+}

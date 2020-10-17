@@ -1,0 +1,127 @@
+/*
+
+Time Complexity: O(n) --> I do not know why I am getting low percentile on the time complexity, is it because of the multiple passes.
+
+Space Complexity: O(n)
+
+Leetcode: successful.
+Runtime: 4 ms, faster than 18.40% of Java online submissions for Reorder List.
+Memory Usage: 39.6 MB, less than 97.73% of Java online submissions for Reorder List.
+
+Approach: 
+
+push everything in the stack.
+
+now start traversing the linkedlist, take one element from the stack, and one from the real linkedlist.
+
+if at an point, the stack element equals, the next or current element of linkedlist exit.
+
+
+
+*/
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        
+
+        Stack<ListNode> st= new Stack<ListNode>();
+        
+        
+        if(head==null|| head.next==null) return;
+        if(head.next.next==null) return;
+        ListNode temp=head;
+        ListNode temp1=head;
+        while(temp!=null)
+        {
+            st.push(temp);
+            temp=temp.next;
+        }
+        
+        while(true)
+        {
+            ListNode temp2=st.pop();
+            ListNode temp3=temp1.next;
+            
+            if(temp1==temp2)
+            {
+                temp1.next=null;
+                return;
+            }
+            
+            if(temp2==temp3)
+            {
+                temp1.next=temp2;
+                temp2.next=null;
+                return;
+            }
+           
+            temp1.next=temp2;
+            temp2.next=temp3;
+            temp1=temp3;
+
+
+        }
+    }
+}
+
+        /*
+          Stack<ListNode> st= new Stack<ListNode>();
+        
+        
+        if(head==null|| head.next==null) return;
+        if(head.next.next==null) return;
+        ListNode temp=head;
+        ListNode temp1=head;
+        int counter=0;
+        
+            while(temp!=null)
+        {
+           counter++;
+                temp=temp.next;
+        }
+        int i=0;
+        temp=head;
+        while(temp!=null&&i<(counter)/2)
+        {
+          //  st.push(temp);
+            i++;
+            temp=temp.next;
+        }
+        
+         while(temp!=null)
+        {
+            st.push(temp);
+            temp=temp.next;
+        }
+        while(true)
+        {
+            ListNode temp2=st.pop();
+            ListNode temp3=temp1.next;
+            
+            if(temp1==temp2)
+            {
+                temp1.next=null;
+                return;
+            }
+            
+            if(temp2==temp3)
+            {
+                temp1.next=temp2;
+                temp2.next=null;
+                return;
+            }
+           
+            temp1.next=temp2;
+            temp2.next=temp3;
+            temp1=temp3;
+
+        */

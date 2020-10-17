@@ -1,0 +1,53 @@
+
+
+/*
+Time Complexity: O(n)
+Space Comeplexity: O(1)
+
+Successful.
+
+Approach:
+
+copy the next element to this node, 
+do this until you reach the end of the linkedlist
+
+
+
+*/
+
+/*This is a function problem.You only need to complete the function given below*/
+
+/*
+class Node
+{
+	int data ;
+	Node next;
+	Node(int d)
+	{
+		data = d;
+		next = null;
+	}
+}
+*/
+// This function should delete node from linked list. The function
+// may assume that node exists in linked list and is not last node
+// node: reference to the node which is to be deleted
+class GfG
+{
+    void deleteNode(Node node)
+    {
+         // Your code here
+         // Your code here
+   
+   Node temp=node;
+   
+   while(temp.next!=null&&temp.next.next!=null)
+   {
+       temp.data=temp.next.data;
+       temp=temp.next;
+       
+   }
+    temp.data=temp.next.data;
+    temp.next=null;
+    }
+}
