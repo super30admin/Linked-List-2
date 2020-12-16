@@ -1,0 +1,38 @@
+  
+// Time Complexity : O(1) - next() && O(1) for hasNext()
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Had to look up hint to create dfs function
+
+// Your code here along with comments explaining your approach: Idea is to use a Stack and perform dfs on right Subtree of popped/next element;
+// For next - top element from stack will be returned.
+
+SOLUTION:
+
+class BSTIterator {
+    Stack<TreeNode> stk;   
+    public BSTIterator(TreeNode root) {
+        stk = new Stack<>();  
+        // stk.push(root);
+        dfs(root);
+    }
+    
+    public int next() {
+        TreeNode curr = stk.pop();
+        dfs(curr.right);
+        return curr.val;
+    }
+    
+    public boolean hasNext() {
+        return !stk.isEmpty();
+    }
+    
+    public void dfs(TreeNode root){
+        if(root==null){
+            return;
+        }
+        stk.push(root);
+        dfs(root.left);
+        
+    }
+}
