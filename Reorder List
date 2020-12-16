@@ -1,0 +1,53 @@
+// Time Complexity : O(N)
+// Space Complexity : O(N)- Stack space to reverse half list??
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Reverse Function
+
+// Your code here along with comments explaining your approach:
+
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null){
+            return;
+        }
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        //Finding middle of LinkedList
+        while(fast!=null && fast.next!=null){       
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        ListNode newListHead = slow.next;   //Start of new/2nd List
+        slow.next = null;       //Terminating 1st List
+                    
+        ListNode reversedHead = reverse(newListHead);   //Reversing the second list using reverse function
+        // System.out.println("reversedVal= " + reversedHead.val + "  ");
+        
+        ListNode start = head;      //Pointer1 = start of List1
+        ListNode end = reversedHead;    //pointer2 = start of List2
+        
+        /*Logic to traverse alternate elements from one list to another until the end of 2nd list*/
+        while(end!=null){
+            ListNode temp = end.next;
+            end.next = start.next;
+            start.next = end;
+            start = end.next;
+            end = temp;
+        }
+    }
+    
+    /*Reverse Function*/
+    private ListNode reverse(ListNode newListHead){
+        if(newListHead==null || newListHead.next==null){
+            return newListHead;
+        }
+        //Traversing until last to last element && reversed will hold last element
+        ListNode reversed = reverse(newListHead.next);
+        newListHead.next.next = newListHead;
+        newListHead.next = null;
+        
+        return reversed;
+    }
+}
