@@ -1,0 +1,41 @@
+// Time Complexity : O(m+n) where m = A.length && n = B.length
+// Space Complexity : O(1)
+
+// Your code here along with comments explaining your approach:
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {     
+        int countA = 0;
+        int countB = 0;
+        ListNode traverse;
+        
+        traverse = headA;
+        while(traverse!=null){
+            traverse = traverse.next;
+            countA++;
+        }
+        
+        traverse = headB;
+        while(traverse!=null){
+            traverse = traverse.next;
+            countB++;
+        }
+        
+        while(countA>countB){
+            headA = headA.next;
+            countA--;
+        }
+        
+        while(countB>countA){
+            headB = headB.next;
+            countB--;
+        }
+        
+        while(headA!=headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+        
+        return headB;
+    }
+}

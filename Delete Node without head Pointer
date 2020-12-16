@@ -1,0 +1,18 @@
+// Time Complexity : O(1)
+// Space Complexity : O(1)
+
+// Your code here along with comments explaining your approach: Idea is to assign next value of node to current node and changing current's next to next's next;
+
+SOLUTION:
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        
+        ListNode temp = node.next;
+        // System.out.println(temp.val);
+        node.val = temp.val;
+        node.next = temp.next;
+    }
+}
+
+
