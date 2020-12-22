@@ -1,0 +1,24 @@
+# TC - O(1) amortized for each operation
+# SC - O(n) max size of recursive stack is n
+# Ran on LC - Yes
+
+# Keep an explicit stack and perform iterative recursion. Keep adding until no more left nodes after every next() call.
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
+
+    def next(self) -> int:
+        toReturn = self.stack.pop()
+        root = toReturn.right
+        while root:
+            self.stack.append(root)
+            root = root.left
+        return toReturn.val
+
+    def hasNext(self) -> bool:
+        return self.stack != []
