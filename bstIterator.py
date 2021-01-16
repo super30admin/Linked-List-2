@@ -1,5 +1,5 @@
-# Time Complexity : O(Height) when you put all left Nodes onto the stack
-# Space Complexity : O(HEIGHT) should be when
+# Time Complexity : O(N) 
+# Space Complexity : O(HEIGHT) should be when height of the tree
 # Did this code successfully run on Leetcode : Yes 
 # Any problem you faced while coding this : No
 
