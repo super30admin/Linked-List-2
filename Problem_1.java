@@ -1,11 +1,11 @@
-// Time Complexity :
-// Space Complexity :
+// Time Complexity :O(1)
+// Space Complexity :O(n)
 // Did this code successfully run on Leetcode :
 // Any problem you faced while coding this :
 
 
 // Your code here along with comments explaining your approach
-
+//Below is the broot for ve method using the extra space.
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
