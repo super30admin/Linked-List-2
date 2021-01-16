@@ -1,6 +1,6 @@
 '''
     Time Complexity:
-        O(n)
+        O(1)
 
     Space Complexity:
         O(1)
@@ -12,15 +12,9 @@
         None
 
     Approach:
-        Swap Current node's value with the next node.
-        And, then delete the last node.
+        Swap current node's value with the next node.
+        Set the current node's next to current node's next's next.
 '''
 def deleteNode(curr_node):
-    prev = None
-    while curr_node.next:
-        curr_node.data = curr_node.next.data
-        prev = curr_node
-        curr_node = curr_node.next
-
-    if prev:
-        prev.next = None
+    curr_node.data = curr_node.next.data
+    curr_node.next = curr_node.next.next
