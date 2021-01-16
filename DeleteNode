@@ -1,0 +1,13 @@
+/*
+TC: O(1)
+SC: O(1)
+ */
+
+class DeleteNode{
+
+    void deleteNode(Node node)
+    {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}

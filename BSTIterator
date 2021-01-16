@@ -1,0 +1,30 @@
+/*
+TC: O(edge)
+SC: O(h)
+ */
+
+class BSTIterator{
+    Stack<TreeNode> st;
+
+    public BSTIterator(TreeNode root) {
+        st = new Stack<>();
+        inorder(root);
+    }
+
+    private void inorder(TreeNode root){
+        while(root!=null){
+            st.push(root);
+            root = root.left;
+        }
+    }
+
+    public int next() {
+        TreeNode res = st.pop();
+        inorder(root.right);
+        return res.val;
+    }
+
+    public boolean hasNext() {
+        return !st.isEmpty();
+    }
+}
