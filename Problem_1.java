@@ -66,6 +66,59 @@ class BSTIterator {
     }
 }
 
+// Time Complexity :O(1)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+//Below is the broot for ve method using the extra space.
+
+//**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class BSTIterator {
+    Stack<TreeNode> st;
+
+    public BSTIterator(TreeNode root) {
+        st=new Stack<TreeNode>();
+        TreeNode temp=root;
+        dfs(temp);
+        
+    }
+    
+    public int next() {
+        TreeNode get=st.pop();
+        dfs(get.right);
+        return get.val;
+    }
+    
+    public boolean hasNext() {
+        return !st.isEmpty();
+    }
+    public void dfs(TreeNode temp){
+        while(temp!=null){
+            st.push(temp);
+            temp=temp.left;
+        }
+    }
+    
+    
+}
+
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * BSTIterator obj = new BSTIterator(root);
