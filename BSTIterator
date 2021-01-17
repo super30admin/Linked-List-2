@@ -1,0 +1,30 @@
+/**
+* Time complexity : O(1) as we consider only hasnext and next traversal. next works on each node and only at one point when the time complexity becomes O(h). But we take average time complexity that is O(1)
+*Space complexity : O(n) for stack
+*/
+class BSTIterator {
+    Stack<TreeNode> stack;
+
+    public BSTIterator(TreeNode root) {
+        stack=new Stack<>();
+        dfs(root);
+        
+    }
+    
+    public int next() {
+        TreeNode result=stack.pop();
+        dfs(result.right);
+        return result.val;
+    }
+    
+    public boolean hasNext() {
+        return !stack.isEmpty();
+        
+    }
+    private void dfs(TreeNode root){
+        while(root!=null){
+            stack.push(root);
+            root=root.left;
+        }
+    }
+}
