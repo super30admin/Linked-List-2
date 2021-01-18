@@ -8,7 +8,11 @@
  *         next = null;
  *     }
  * }
+ 
+ Time complexity O(n)
+ space complexity O(1)
  */
+
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         int lenA=0;
