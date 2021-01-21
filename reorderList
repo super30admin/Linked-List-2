@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    
+	//143. Reorder List
+    //Time complexity is O(n)
+    //Space complexity is O(1)
+    public void reorderList(ListNode head) {
+        
+        if(head == null || head.next ==null)
+            return ;
+        
+        //Finding the mid of the LinkedList
+        ListNode start = head;
+        ListNode end = head;
+        
+        while( end.next!=null && end.next.next!=null ){
+            end = end.next.next;
+            start = start.next;
+        }
+        
+        //Reversing the 2nd half of linked list
+        end=  reverse(start.next);
+        
+        //Merging the two lists
+        start.next = null;
+        start = head;
+        
+        while(end!=null){
+        ListNode temp = start.next;
+        start.next = end;
+        end = end.next;
+        start.next.next = temp;
+        start = temp ;
+        }
+        
+        
+    }
+    
+  private ListNode reverse (ListNode head){
+        
+      ListNode prev = null;
+      ListNode current = head;
+      while(current!=null){
+          ListNode nextNode = current.next;
+          current.next = prev;
+          prev = current;
+          current = nextNode;
+      }
+      return prev;
+    }
+}
