@@ -55,34 +55,41 @@ class Solution:
 class Solution:
     
     def reorderList(self, head: ListNode) -> None:
-    
+
         """
         Description: Reorder a linked list
         
-        Time Complexicity:
-        Space Complexicity:
+        Time Complexicity: O(n)
+        Space Complexicity: O(1)
         
         Leetcode Comment:- Do not return anything, modify head in-place instead.
         
         Approach:
+        1. Find middle of the linked list
+        2. from mid point onwards, reverse the linked list and shorten the orginal linked list until mid point
+        3. use both linked list to merge and re-order 
         
         """
-        slow = head; fast = head
+        
+        if head == None or head.next == None:
+            return 
+        
+        slow = head; fast = head.next
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
             
-        mirror = self.reverse(slow)
+        fast = self.reverse(slow.next)
         slow.next = None
-        
         slow = head
-        while mirror:
+
+        while fast:
             temp = slow.next
-            slow.next = mirror
-            mirror = mirror.next
+            slow.next = fast
+            fast = fast.next
             slow.next.next = temp
             slow = temp
-        
+            
     # Function to get reverse linked list
     def reverse(self, head):
         prev = None
@@ -92,5 +99,4 @@ class Solution:
             temp.next = prev
             prev = temp
         
-        return prev
-        
+        return prev 
