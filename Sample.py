@@ -100,3 +100,65 @@ class Solution:
             prev = temp
         
         return prev 
+ 
+def deleteNode(node):
+    
+    """
+    Description: delete a node without known head node
+    
+    Time Complexicity: O(n)
+    Space Complexicity: O(1)
+    
+    Approach:
+    1. Use value of next node and replace with current node's value
+    2. Now, move node.next to the node.next.next to get rid of next index
+    """
+    
+    node.val = node.next.val   # copy value from next node)
+    node.next = node.next.next # point to the next value effectively removing the node
+    
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class BSTIterator:
+
+    """
+    Description: Implement a BST iterator for in-order traversal of a BST
+    
+    Time Complexicity: O(n)
+    Space Complexicity: O(n) {for recursive stack}
+    
+    Approach:
+    Instead of a regular recursion, stop the recursion at every value (create a stack)
+    - to be aware that only next and has.next are up
+    - stop the recursive stack at every traversal value by poping a stack and return from next()
+    - for hasNext, just verify if the stack is empty or not
+    """
+    
+    def __init__(self, root: TreeNode):
+        self.stack = []
+        self.dfs(root)
+
+    def next(self) -> int:
+        result = self.stack.pop()
+        self.dfs(result.right)
+        return result.val
+
+    def hasNext(self) -> bool:
+        return not len(self.stack) == 0
+    
+    def dfs(self, root):
+        while root:
+            self.stack.append(root)
+            root = root.left
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()    
+    
