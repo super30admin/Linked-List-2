@@ -1,10 +1,20 @@
-// Time Complexity :O(n+n/2)traversal of whole list + adding stack element to list
-// Space Complexity :O(n/2) for stack
+// Time Complexity :O(n+n/2)traversal of whole list + reversing the list
+// Space Complexity :O(1)
 // Did this code successfully run on Leetcode :Yes
 // Any problem you faced while coding this :No
 
 
 // Your code here along with comments explaining your approach
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -23,32 +33,44 @@ class Solution {
         ListNode slow=head;
         ListNode fast=head;
         
-        while(fast.next!=null && fast.next.next!=null)//finding the middle element
+        while(fast!=null && fast.next!=null)
         {
             slow=slow.next;
             fast=fast.next.next;
         }
+        fast=reverse(slow.next);
+        slow.next=null;
         
-       Stack<ListNode> st= new Stack<>();
-        while(fast.next==null &&slow.next!=null)//adding all the elements on the stack after the middle element has been found
-            {
-                st.push(slow.next);
-                slow=slow.next;
-            }
-         while(fast.next!=null &&slow!=null)
-            {
-                st.push(slow);
-                slow=slow.next;
-            }
         
-        ListNode n= head;
-        while(!st.isEmpty())//removing fromstack and adding after element in the original list untill stack is empty.
+        slow= head;
+        ListNode S=null;
+        ListNode F=null;
+        while(fast!=null && slow.next!=null)
         {
-            ListNode temp=n.next;
-            n.next=st.pop();
-            n.next.next=temp;
-            n=n.next.next;
+            S=slow.next;
+            F=fast.next;
+            
+            slow.next=fast;
+            fast.next=S;
+            slow=S;
+            fast=F;
         }
-        n.next=null;
+        
+       
+    }
+    private ListNode reverse(ListNode head)
+    {
+        ListNode curr=head;
+        ListNode prev=null;
+        ListNode next=null;
+        while(curr!=null)
+        {
+            next=curr.next;
+            curr.next=prev;
+            
+            prev=curr;
+            curr=next;
+        }
+        return prev;
     }
 }

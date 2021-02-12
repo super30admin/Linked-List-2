@@ -1,9 +1,7 @@
-// Time Complexity :O(n)
-// Space Complexity :O(n)
-// Did this code successfully run on Leetcode :No
-// Any problem you faced while coding this :Yes
-//I tried implement it by adding the binary search tree elements inorder traversal to a linked list . I am not sure If I need to implemetn the linked list
-//from scratch for placing  the elements in such a way that hasnext and next works.
+// Time Complexity :O(depth)
+// Space Complexity :O(depth)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :No
 
 
 // Your code here along with comments explaining your approach
@@ -22,39 +20,51 @@
  *     }
  * }
  */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
 class BSTIterator {
-    List<TreeNode> treelist= new LinkedList<>();
-    TreeNode head;
+    Stack<TreeNode> st= new Stack<>();//Stack to maintain all the left most element
+    
     public BSTIterator(TreeNode root) {
-        recurIterator(root);
-        
-    }
-    public void recurIterator(TreeNode root){
-        if(root==null)
-            return;
-        if(root.left!=null)
-            recurIterator(root.left);
-        treelist.add(root.left);
-        treelist.add(root);
-        if(root.right!=null)
-        recurIterator(root.right);
-        treelist.add(root.right);
-        head= treelist.get(0);
+            dfs(root);
         }
     
+    public void dfs(TreeNode root)//dfs to traverse till left and check right only when next() function is called.
+    {
+           while(root!=null){
+                st.push(root);
+                root=root.left;
+            }       
+    }
+    
     public int next() {
-        int n=0;
-        if(head.next!=null){
-             n=head.val;
-            head=head.next;
-        }        
-            return n;
+        if(hasNext())
+        {
+            TreeNode temp=st.pop();
+            if(temp.right!=null)
+                dfs(temp.right);
+            return temp.val;
+        }
+        return -1;
     }
     
     public boolean hasNext() {
-        if(head.next==null)
-            return false;
-        return true;
+        if(!st.isEmpty())
+            return true;
+        return false;
     }
 }
 
