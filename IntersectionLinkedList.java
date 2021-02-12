@@ -114,3 +114,57 @@ public class IntersectionLinkedList {
         return headA;
     }
 }
+
+
+
+/**
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        int A = getLength(headA);
+        int B = getLength(headB);
+        System.out.println("A"+A);
+        System.out.println("B"+B);
+        int diff = Math.abs(A-B);
+        
+        while(diff > 0) {
+            if(A > B) {
+                headA = headA.next;
+            }else{
+                headB = headB.next;
+            }
+            diff--;
+        }
+        
+       while(headA!=headB){   
+           headA = headA.next;
+           headB = headB.next;
+       }
+        
+        return headA;
+        
+    }
+    
+    private int getLength(ListNode node) {
+        int n  = 0;
+        while(node != null) {
+            node = node.next;
+            n++;
+        }
+        return n;
+        
+    }
+}
+
+**/
