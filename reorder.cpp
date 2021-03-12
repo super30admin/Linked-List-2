@@ -1,0 +1,58 @@
+//TC: O(n) where n is number of nodes
+//SC: O(1) 
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        
+        if(head == NULL) return;
+        
+        
+        //find middle
+        ListNode *slow=head;
+        ListNode *fast=head;
+        
+        while(slow!=NULL && fast!=NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+                
+        ListNode *prev = NULL;
+        ListNode *curr = slow;
+        
+        //reverse sechalf
+        while(curr!=NULL){
+            ListNode *temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        
+        
+        //merge
+        ListNode *first = head;
+        ListNode *sec = prev;
+        
+        while(sec->next!=NULL){
+            ListNode *temp = first->next;
+            first->next = sec;
+            first = temp;
+            
+            ListNode *temp2 = sec->next;
+            sec->next = first;
+            sec = temp2;            
+        }        
+        
+        
+    }
+};
