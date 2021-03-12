@@ -14,36 +14,34 @@
  * }
  */
 class BSTIterator {
-
-    LinkedList<Integer> list;
-    public BSTIterator(TreeNode root) {
-        list = new LinkedList<>();
-        populateList(root);
-    }
     
     // Time Complexity: O(n)    (where n -> no. of nodes in the tree)
-    // Space Complexity: O(n)
-    // Performing Inorder traversal to populate the linkedlist
-    private void populateList(TreeNode root){
-        if(root == null)
-            return;
-        populateList(root.left);
-        list.add(root.val);
-        populateList(root.right);
-    }
+    // Space Complexity: O(h)   (where h -> height of the tree)
 
-    // Time Complexity: O(1)
-    // Space Complexity: O(1)
-    // Since the linkedlist is inorder traversal of tree - the first node pf the linked list would be the smallest node
-    public int next() {
-        return list.size() > 0 ? list.removeFirst() : 0;
+    private Stack<TreeNode> stack;
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<>();
+        dfs(root);
     }
     
-    // Time Complexity: O(1)
-    // Space Complexity: O(1)
-    // If linked list contains elements then true else false
+    private void dfs(TreeNode root){
+        while(root != null){
+            stack.push(root);
+            root = root.left;
+        }
+    }
+    
+    public int next() {
+        if(!hasNext())
+            return -1;
+        TreeNode root = stack.pop();
+        dfs(root.right);
+        
+        return root.val;
+    }
+    
     public boolean hasNext() {
-        return list.size() > 0 ? true : false;
+        return stack.isEmpty() ? false : true;
     }
 }
 
