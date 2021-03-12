@@ -9,33 +9,50 @@
  * }
  */
 class ReorderList {
-
+    
     // Time Complexity: O(n)
-    // Space Complexity: O(n)
-
+    // Space Complexity: O(1)
+    
+    // Middle point -> reverse -> combine
     public void reorderList(ListNode head) {
         if(head == null)
             return;
         
-        ArrayList<ListNode> list = new ArrayList<>();
-        ListNode dummy = head;
+        ListNode slow = head;
+        ListNode fast = head;
         
-        while(dummy != null){
-            list.add(dummy);
-            dummy = dummy.next;
+        // Reaching the mid point of linkedlist
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
         
-        int i = 1, left = 1, right = list.size() - 1;
-        dummy = head;
+        // Split the list
+        fast = reverse(slow.next);         // Reverse the Linked List from the mid-point
+        slow.next = null;
         
-        while(i < list.size()){
-            if(i % 2 == 0)
-                dummy.next = list.get(left++);
-            else 
-                dummy.next = list.get(right--);
-            dummy = dummy.next;
-            i++;        
+        // Combining List
+        slow = head;
+        while(slow != null && fast != null){
+            ListNode nextS = slow.next;
+            ListNode nextF = fast.next;
+            
+            slow.next = fast;
+            fast.next = nextS;
+            
+            slow = nextS;
+            fast = nextF;
+        }        
+    }
+    
+    private ListNode reverse(ListNode head){
+        ListNode prev = null;
+        while(head != null){
+            ListNode next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
         }
-        dummy.next = null;
+        return prev;
     }
 }
