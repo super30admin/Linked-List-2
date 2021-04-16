@@ -1,0 +1,66 @@
+// Time Complexity :O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :
+merging while loop construction
+
+// Your code here along with comments explaining your approach
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        //find mid
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next != null && fast.next.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //slow has mid step 2 reverse second half 
+        ListNode pointerR = reverseList(slow.next);
+        //System.out.println(pointerR.val);
+        slow.next = null; // breaking into 2 lists
+        
+        //step 3 merge 
+        slow = head;
+        while(pointerR!= null)
+        {
+            fast = slow.next;
+            slow.next = pointerR;
+            pointerR = pointerR.next;
+            slow.next.next = fast;
+            slow = fast;
+            
+        }
+    }
+    
+    private ListNode reverseList (ListNode head)
+    {
+        if(head == null )
+            return head;
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode fast = curr.next;
+        
+        while(fast != null)
+        {
+            curr.next = prev;
+            prev =curr;
+            curr = fast;
+            fast = fast.next;
+        }
+        curr.next = prev;
+        return curr;
+    }
+}
