@@ -24,8 +24,7 @@ S30 SlackID : RN32MAY2021
 #-----------------
 # Time Complexity: 
 #-----------------
-# __init__ : O(N): Need to iterate over entire tree once to construct inorder LL
-# next()   : O(1): Simple addition and O(1) lookup for len
+# next()   : O(1): O(h) worst case. Amortized O(1)  
 # hasNext(): O(1)
 
 #------------------
