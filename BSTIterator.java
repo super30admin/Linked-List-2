@@ -1,4 +1,5 @@
-// Time Complexity : O(h) height of the tree  - worst case
+// Time Complexity : O(h) height of the tree  - worst case 
+//                  : O(1)
 // Space Complexity : O(1) 
 // Did this code successfully run on Leetcode :
 // Any problem you faced while coding this :
