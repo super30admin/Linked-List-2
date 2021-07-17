@@ -1,5 +1,5 @@
 //Time Complexity : O(n+m)
-// Space Complexity : O(n)
+// Space Complexity : O(1)
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 package problem4;
@@ -8,6 +8,58 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ListIntersection {
+	/* ------------------------------------------------------------------------- */
+	/* ---------------------------- TWO POINTERS ------------------------------- */
+	/* ------------------------------------------------------------------------- */
+	public ListNode getIntersectionNodeTwoPointers(ListNode headA, ListNode headB) {
+		if (headA == null || headB == null) {
+			return null;
+		}
+
+		ListNode node1 = headA;
+		ListNode node2 = headB;
+
+		int m = 0;
+		int n = 0;
+
+		while (node1 != null) {
+			node1 = node1.next;
+			m++;
+		}
+
+		while (node2 != null) {
+			node2 = node2.next;
+			n++;
+		}
+
+		node1 = headA;
+		node2 = headB;
+
+		if (m < n) {
+			for (int i = 0; i < Math.abs(m - n); i++) {
+				node2 = node2.next;
+			}
+		} else {
+			for (int i = 0; i < Math.abs(m - n); i++) {
+				node1 = node1.next;
+			}
+		}
+
+		while (node1 != node2) {
+			node1 = node1.next;
+			node2 = node2.next;
+		}
+
+		return node1;
+	}
+
+	/* ------------------------------------------------------------------------- */
+	/* ------------------------------- HASHSET --------------------------------- */
+	/* ------------------------------------------------------------------------- */
+	// Time Complexity : O(n+m)
+	// Space Complexity : O(n)
+	// Did this code successfully run on Leetcode : Yes
+	// Any problem you faced while coding this : No
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 		if (headA == null || headB == null) {
 			return null;
@@ -46,7 +98,8 @@ public class ListIntersection {
 		head2.next.next.next = node;
 
 		ListIntersection obj = new ListIntersection();
-		System.out.println("Lists intersect at node with value " + obj.getIntersectionNode(head1, head2).val);
+		System.out
+				.println("Lists intersect at node with value " + obj.getIntersectionNodeTwoPointers(head1, head2).val);
 
 	}
 

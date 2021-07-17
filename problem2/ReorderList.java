@@ -6,7 +6,7 @@ package problem2;
 
 public class ReorderList {
 	public void reorderList(ListNode head) {
-		if (head == null) {
+		if (head == null || head.next == null) {
 			return;
 		}
 
