@@ -7,6 +7,7 @@
 # implement dfs using a physical stack out of the hood
 # for next just return the value and do a right dfs call
 # for hasNext check is the physical stack is empty or not
+# using controlled recursion
 
 
 from collections import deque
