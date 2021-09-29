@@ -1,5 +1,6 @@
-//Time complexity: o(1)
-//Space complexity: o(n)
+//Time complexity: o(1) to o(N)
+
+//Space complexity: o(H)
 
 class BSTIterator {
     Stack<TreeNode> st;
