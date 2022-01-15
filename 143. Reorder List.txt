@@ -1,0 +1,69 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        ListNode mid = middle(head);
+        ListNode p1 = head;
+        ListNode p2 = reverseList(mid);
+        ListNode p1Next=p1.next;
+        ListNode p2Next = p2.next;
+        while(p2Next!=null){
+            
+            p1.next=p2;
+            p1=p1Next;
+            p1Next=p1Next.next;
+            
+            p2.next=p1;
+            p2=p2Next;
+            p2Next=p2Next.next;
+            
+        }
+        
+        
+    }
+    
+    public ListNode middle(ListNode head){ 
+        ListNode slow = head;
+        ListNode fast = head; 
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast = fast.next.next;
+        } 
+        System.out.println(slow.val);
+        return slow; 
+    }
+    
+      public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null) return head;
+        ListNode prev = null;
+        ListNode cur = head;
+        ListNode fast = head.next;
+        while(fast!=null){
+           cur.next=prev;
+            prev=cur;
+            cur=fast;
+            fast=fast.next;
+        }
+        cur.next=prev;
+          System.out.println(cur.val);
+        return cur;
+        
+    }
+}
