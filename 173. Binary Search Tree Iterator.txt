@@ -1,0 +1,59 @@
+// Time Complexity : O(1)..average case..at a very few cases it would be O(h)..where all nodes r on left
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class BSTIterator {
+   Stack <TreeNode> stack;
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<>();
+        //fill the stack till u reach first element which is lftmost in tree(as its the next element at this           //point of time)
+        dfs(root);
+        
+    }
+    
+    public int next() {
+        //pop one element and go leftmost child of it by calling dfs
+        TreeNode cur = stack.pop();
+        dfs(cur.right);
+        return cur.val;
+        }
+    
+    public boolean hasNext() {
+        return !stack.isEmpty();
+        
+    }
+    
+    public void dfs(TreeNode root){
+        //function to go till leftmost child of a treenode
+        while(root!=null){
+        stack.push(root);
+       root=root.left;
+        }
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */
