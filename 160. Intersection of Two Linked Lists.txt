@@ -1,0 +1,65 @@
+// Time Complexity : O(m+n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+//we traverse list A and get its lenght , we traverse list B and get its length as well.
+//then we set pointers at starting, and whtever list is bigger, we take the pointer forward till it nullifies the difference
+//means if list A is 5 and list B is 7 in length, we take list to two 2 nodes ahead and start cmparing from there till we
+//find common node, if we dont find common till the loop ends, that means pointers are at null.
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        if(headA==null || headB==null) return null;
+        int a=0;
+        int b=0;
+        
+        ListNode tempA = headA;
+        ListNode tempB = headB;
+        
+        while(tempA!=null){
+            a++;
+            tempA = tempA.next;
+        }
+        
+          while(tempB!=null){
+            b++;
+            tempB = tempB.next;
+        }
+    
+        tempA = headA;
+        tempB = headB;
+        
+        while(a>b){
+        tempA=tempA.next;
+        a--;
+        }
+      
+        while(b>a){
+        tempB=tempB.next;
+        b--;
+        }
+       
+        while(tempA!=tempB){//in case there is no intersection, they both will reach null & we return tempA;
+         
+            tempA=tempA.next;
+            tempB=tempB.next;
+        }
+        
+        return tempA;
+    }
+}
