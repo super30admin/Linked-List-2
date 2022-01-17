@@ -1,0 +1,38 @@
+// Idea is to find the mid, reverse the second half of LL (to create a new LL) and join the two LL
+//tc: O(n)
+//sc: O(1)
+//passed on leetcode: yes
+class Solution {
+    public void reorderList(ListNode head) {
+        //find the mid
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next!=null && fast.next.next!=null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //reverse the second half
+        ListNode curr = slow.next;
+        slow.next = null; // this is imp to remove connection from first LL end to second list, otherwise it will be in a cycle
+        ListNode prev = null;
+        ListNode temp = null;
+        while (curr!=null){
+            temp = curr.next;
+            curr.next = prev;
+            prev= curr;
+            curr= temp;
+        }
+        //merge
+        slow = head; // moving to start of LL
+        fast = prev; // moving fast to head of reversed LL
+        
+        while (fast!=null){
+            
+            temp = slow.next;
+            slow.next = fast;
+            fast = fast.next;
+            slow.next.next = temp;
+            slow = temp;
+        }
+    }
+}
