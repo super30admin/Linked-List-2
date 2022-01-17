@@ -1,6 +1,6 @@
 // Idea is to find the mid, reverse the second half of LL (to create a new LL) and join the two LL
-//tc:
-//sc:
+//tc: O(n)
+//sc: O(1)
 //passed on leetcode: yes
 class Solution {
     public void reorderList(ListNode head) {
