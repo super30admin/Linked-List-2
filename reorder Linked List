@@ -1,0 +1,69 @@
+//TC:- O(n)
+//SC:- O(n) Recursion Stack
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        ListNode head2 = null;
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next != null && fast.next.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        head2 = slow.next;
+        slow.next = null;
+        head2 = reverse(head2);
+        
+        while(head2 != null)
+        {
+            ListNode temp = head.next;
+            head.next = head2;
+            head2 = head2.next;
+            head.next.next = temp;
+            head = temp;
+        }
+        
+    }
+    
+    private ListNode reverse(ListNode head)
+    {
+        
+        if(head == null)
+        {
+            return null;
+        }
+        ListNode curr = head;
+        ListNode prev = null;
+        ListNode fast = head.next;
+        
+        
+        while(curr != null)
+        {
+            curr.next= prev;
+            prev = curr;
+            curr = fast;
+            
+            if(fast != null)
+            {
+                fast = fast.next;
+            }
+            
+        }
+        return prev;
+        
+    }
+}
