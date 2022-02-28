@@ -3,7 +3,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 /*
-
+Time Complexity: O(N)
+Space Complexity: O(N) using HashSet
  */
 public class IntersectionOfTwoLinkedLIst {
     public static class ListNode{
