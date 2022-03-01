@@ -1,5 +1,5 @@
 /*
-Time Complexity: O(1)
+Time Complexity: O(1) constant time as we are just de-chaining and chaining the node
 Space Complexity: O(1)
 
 run on the geeks for geeks: yes

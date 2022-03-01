@@ -3,8 +3,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 /*
-Time Complexity: O(N)
+Time Complexity: O(N) node in the Linked List
 Space Complexity: O(N) using HashSet
+Any difficulties: NO
+
+Approach:
+1. I am using HashSet as set contains unique elements, so it would help me to keep track of the nodes when I encounter them
+into the other ListNode too, and whenever I would encounter a common node, i would be returning that from there
  */
 public class IntersectionOfTwoLinkedLIst {
     public static class ListNode{

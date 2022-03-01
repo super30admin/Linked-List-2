@@ -1,10 +1,10 @@
 /*
-Time Complexity: O(N)
+Time Complexity: O(N)~ amortized, as finding middle would take N/2 (where N is the length of the ListNode)
 Space Complexity: O(N)
 
 Approach:
-1. First find out middle
-2. reverse the second half
+1. First find out middle using slow and fast pointer
+2. reverse the second half using prev pointer
 3. Merge the second half and head
 
  */

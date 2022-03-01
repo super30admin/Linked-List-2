@@ -1,10 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 /*
-Time Complexity: overall O(N), both method will have O(N) complexity
+Time Complexity: overall O(N), both method will have O(N) complexity, N is the number of nodes we have in tree
 Space Complexity: O(N) using ArrayList
 run on leetcode: yes
 Any difficulties : no
+
+Approach:
+1. First I am Iterating BST using inorder traversal and storing every element in the list
+2. my index pointer will be at the node and in case of arraylist it would point to the mid element, if it has right child
+it would return true in hasNext otherwise false
  */
 public class BinarySearchTreeIterator {
     public static class TreeNode{
