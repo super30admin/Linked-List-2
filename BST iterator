@@ -1,0 +1,40 @@
+//TC = overall -> O(n)
+//SC = O(h) -> height of tree
+
+
+class BSTIterator {
+    
+   private Stack<TreeNode> s ;
+
+    public BSTIterator(TreeNode root) {
+        
+        s = new Stack<>();
+        
+        explore(root);
+        
+    }
+    
+    private void explore(TreeNode node){
+        while(node != null){
+            s.push(node);
+            node = node.left;
+        }
+    }
+    
+    public int next() {
+        TreeNode node = s.pop();   //no left child or all left child is processed
+        
+        //node's left side is processed
+        
+        explore(node.right);    //now pushing my right side nodes
+        
+        return node.val;
+    }
+    
+    public boolean hasNext() {
+        
+        return !s.isEmpty();   //till stack is not empty pop left and right
+                               //if stack is empty we have no node to pop
+        
+    }
+}
