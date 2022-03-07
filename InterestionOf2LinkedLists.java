@@ -2,7 +2,7 @@
 //time - o(n) where n is length of linked list
 //Ran on Leetcode successfully : Yes
 // Problem faced  : No
-// Iterative approach : Two pinter, find differnce in length of two lists, move pointer in big list by diff, then move both pointers
+// Iterative approach : Two pointer, find differnce in length of two lists, move pointer in big list by diff, then move both pointers
 
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
