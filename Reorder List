@@ -1,0 +1,54 @@
+//TC = O(n)
+//SC = O(n)
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        //finding mid
+        ListNode slow = head, fast = head;
+        
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //return slow;
+        
+        //reverse 2nd half
+        ListNode head2 = reverse(slow.next);  //slow.next = mid
+        slow.next = null;    
+                
+           //head2 = head of reversed list     
+           // merge
+        ListNode first = head, second = head2;      
+        ListNode temp1;
+        ListNode temp2;
+        
+        while(second != null){    //since incase of odd length first will always greater than second
+            temp1 = first.next;
+            first.next = second;
+        
+            temp2 = second.next;
+            second.next = temp1;
+        
+            first = temp1;
+            second = temp2;
+        }
+        
+     
+    }
+    
+    private ListNode reverse(ListNode head){
+        ListNode curr = head;
+        ListNode prev = null;
+        
+        while(curr != null){
+            ListNode next = curr.next;
+            curr.next = prev;
+            
+            prev = curr;
+            curr = next;
+            
+        }
+        return prev;
+    }
+    
+}
