@@ -1,0 +1,48 @@
+//TC = O(m+n) -> two lists
+//SC = O(1)
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        //passing method -> making int len = length of 2 linked list
+        int lenA = listLen(headA);
+        int lenB = listLen(headB);
+        
+        int diff = Math.abs(lenA-lenB);
+        
+        //pointers
+        ListNode first;
+        ListNode second;
+        
+        if(lenA > lenB){
+            first = headA;
+            second = headB;
+        }
+        else{
+            first = headB;
+            second = headA;
+        }
+        
+        //move larger list pointer so our diff get short
+        while(diff>0){
+            first = first.next;
+            diff--;
+        }
+        
+        while(first != second){
+            first = first.next;
+            second = second.next;
+        }
+        return first;
+        
+    }
+    
+    //method for length of listA and listB
+    private int listLen(ListNode head){
+        int len = 0;
+        while(head!=null){
+            len++;
+            head = head.next;
+        }
+        return len;
+    }
+}
