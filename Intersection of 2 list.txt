@@ -1,0 +1,45 @@
+// Time:O(n+m)
+// Space:O(1)
+// Issues:None
+
+
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null)return null;
+        
+        ListNode a = headA;
+        ListNode b = headB;
+        int countA = 0;
+        int countB = 0;
+        
+        while(a != null){
+            a = a.next;
+            countA++;
+        }
+        
+        while( b!= null){
+            b = b.next;
+            countB++;
+        }
+        
+        b = headB;
+        a = headA;
+
+        while(countB > countA){
+            headB = headB.next;
+            countB--;
+        }
+        
+        while(countA > countB){
+            headA = headA.next;
+            countA--;
+        }
+        
+        while(headA != headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headB;
+    }
+}
