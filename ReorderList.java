@@ -1,5 +1,7 @@
 public class ReorderList {
 
+    // TC - O(n)
+    // SC - O(1)
     public void reorderList(ListNode head) {
         if(head == null || head.next == null) return;
 
