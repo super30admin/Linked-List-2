@@ -1,0 +1,50 @@
+/**
+INTERSECTION OF TWO LINKED LIST
+TC O(LenA+LenB)
+SC O(1)
+
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        
+        int lenA = 0;
+        int lenB = 0;
+        ListNode currA = headA;
+        ListNode currB = headB;
+        while(currA!=null){
+            currA = currA.next;
+            lenA++;
+        }
+        System.out.println("A size"+lenA);
+        while(currB!=null){
+            currB = currB.next;
+            lenB++;
+        }
+        System.out.println("B size"+lenB);
+        while(lenA>lenB){
+            lenA--;
+            headA = headA.next;
+        }
+        
+        while(lenB>lenA){
+            lenB--;
+            headB = headB.next;
+        }
+        System.out.println("B node :-"+headB.val);
+        while(headA!=headB){
+            headA=headA.next;
+            headB= headB.next;
+        }
+        return headA;
+    }
+}
