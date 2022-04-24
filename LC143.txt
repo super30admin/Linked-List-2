@@ -1,0 +1,55 @@
+/**
+Reorder List
+TC O(n)
+SC O(1)
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null || head.next == null) return;
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        //find middle
+        while(fast.next!=null && fast.next.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        
+        fast = reverse(slow.next);
+        
+        slow.next = null;
+        
+        slow=head;
+        
+        ListNode temp = null;
+        while(fast!=null){
+            temp = slow.next;
+            slow.next = fast;
+            fast = fast.next;
+            slow.next.next = temp;
+            slow=temp;
+        }     
+    }
+    
+    public ListNode reverse(ListNode head){
+        if(head == null || head.next == null) return head;
+        
+        ListNode secondElem = head.next;
+
+        head.next = null;
+
+        ListNode reverseRest = reverse(secondElem);
+
+        secondElem.next = head;
+
+        return reverseRest;
+    }   
+}
