@@ -1,15 +1,15 @@
 public class Problem4 {
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) {
-     * val = x;
-     * next = null;
-     * }
-     * }
-     */
+
+    //Definition for singly-linked list.
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
     // Time Complexity :  O(m+n)
     // Space Complexity : O(1)
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
