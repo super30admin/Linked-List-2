@@ -1,0 +1,28 @@
+//Iterators are concurrent in nature - the ones already processed are not of concern
+//our concern should be about immediate next element
+//TC: O(1) should only consider calling methods, not constructors
+//SC: O(n) for stack
+
+class BSTIterator {
+    Stack<TreeNode> st;
+    public BSTIterator(TreeNode root) {
+        st = new Stack<>();
+        dfs(root);
+    }
+    
+    public int next() {
+        TreeNode popped = st.pop();
+        dfs(popped.right);  
+        return popped.val;
+    }
+    
+    public boolean hasNext() { //O(1)
+        return !st.isEmpty();
+    }
+    public void dfs(TreeNode root) {
+        while (root!=null) {
+            st.push(root);
+            root = root.left;
+        }
+    }
+}
