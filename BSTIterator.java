@@ -29,8 +29,7 @@ class BSTIterator {
     
     public int next() {
         TreeNode node = st.pop();
-        if (node.right != null)
-            populateStack(node.right);
+        populateStack(node.right);
         return node.val;
     }
     
