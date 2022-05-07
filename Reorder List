@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null || head.next == null)
+            return;
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next != null && fast.next.next != null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        fast = slow.next;
+        slow.next = null;
+        slow = head;
+        
+        fast = reverse(fast);
+        ListNode temp = null;
+        
+        while(fast != null)
+        {
+            temp = slow.next;
+            slow.next = fast;
+            fast = fast.next;
+            slow.next.next = temp;
+            slow = temp;
+        }
+    }
+    
+    public ListNode reverse(ListNode root)
+    {
+        ListNode curr = root;
+        ListNode prev = null;
+        ListNode next = null;
+        
+        while(curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+}
+
+// TC - O(n)
+// SC - O(1)
