@@ -44,17 +44,12 @@ public class Solution {
             count2--;
         }
         
-        while(p != null || q != null)
+        while(p != q)
         {
-            if(p == q)
-            {
-                return p;
-            }
-            
             p = p.next;
             q = q.next;
         }
-        return null;
+        return p;
     }
 }
 
