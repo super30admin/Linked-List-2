@@ -1,0 +1,5 @@
+//discussion
+
+say we are given the node to delete 
+we first copy the contents of next node to given node thus overriding the value 
+then link .next.next thus effectively deleting the node
