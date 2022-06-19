@@ -1,0 +1,27 @@
+//TC,SC - O(n)
+class BSTIterator {
+
+    public BSTIterator(TreeNode root) {
+        dfs(root);
+    }
+    
+    public int next() {
+        TreeNode p = st.pop();
+        int val = p.val;
+        p = p.right;
+        dfs(p);
+        return val;
+    }
+    
+    public boolean hasNext() {
+        return !st.isEmpty();
+    }
+    
+    private Stack<TreeNode> st = new Stack<>();
+    private void dfs(TreeNode root){
+        while(root != null){
+            st.push(root);
+            root = root.left; 
+        }
+    }
+}
