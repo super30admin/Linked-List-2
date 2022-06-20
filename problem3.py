@@ -9,6 +9,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 # deleting node 5 without having reference to head of the linked list.
 class Solution:
     def deleteNode(self, currNode):
