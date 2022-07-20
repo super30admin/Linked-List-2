@@ -1,0 +1,60 @@
+//Time Complexity : O(n)
+//Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
+    {
+        int sizeA = 0;
+        int sizeB = 0;
+        
+        ListNode temp = headA;
+        
+        while(temp!=null)
+        {
+            temp = temp.next;
+            sizeA++;
+        }
+       temp = headB;
+        while(temp!=null)
+        {
+            temp = temp.next;
+            sizeB++;
+        }
+        ListNode ptrA = headA;
+        ListNode ptrB = headB;
+        if(sizeA>sizeB)
+        {
+            int s = sizeA-sizeB;
+            while(s>0 && ptrA!=null)
+            {
+                ptrA = ptrA.next;
+                s--;
+            }
+        }else
+        {
+            int s = sizeB-sizeA;
+            //System.out.println(s);
+            while(s>0 && ptrB!=null)
+            {
+                ptrB = ptrB.next;
+                s--;
+            }
+        }
+        
+        while(ptrA!=null && ptrB!=null)
+        {
+            if(ptrA==ptrB)
+            {
+                return ptrA;
+            }
+            ptrA = ptrA.next;
+            ptrB = ptrB.next;
+            
+        }
+        
+        return null;
+        
+    }
+}
