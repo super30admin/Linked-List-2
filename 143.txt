@@ -1,0 +1,111 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+// class Solution {
+//     public void reorderList(ListNode head)
+//     {
+//         int counter=0;
+//         ListNode temp = head;
+//         ListNode slow= head;
+//         ListNode fast= head;
+        
+//         ListNode order = head;
+        
+        
+//         while(fast!=null && fast.next!=null)
+//         {
+//             slow= slow.next;
+//             fast=fast.next.next;
+            
+            
+//         }
+//         //System.out.print(slow.val);
+//          ListNode mid = slow;
+//             mid = reverseList(mid);
+        
+        
+//         ListNode trav =head;
+//         while (fast.next==null)
+//         {
+//             ListNode temp1 = trav.next;
+//             ListNode temp2 = fas.next;
+//             trav.next=fast;
+//             fast.next=temp1;
+//             trav=temp1;
+//             fast=temp2;
+            
+//         }
+//         return head;
+    
+        
+//     }
+// }
+
+class Solution {
+    public void reorderList(ListNode head) {
+	
+	//First we find mid pointer by using two pointers fast and slow
+	
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode mid = slow;
+		
+		//We reverse the second half
+		
+       // mid = reverseList(mid);
+        fast = reverseList(slow);
+        slow.next-null;
+        
+        //merge the two linked lists together
+        slow = head;
+        ListNode temp = null;
+        
+        while(fast!=null){
+            temp= slow.next;
+            slow.next=fast;
+            fast=fast.next;
+            slow.next
+        }
+        
+        
+    }
+    
+		
+		//We connect the nodes
+		
+        while(mid!=null){
+            if(head.next == mid) {
+                head = head.next;
+                mid = mid.next;
+                continue;
+            }
+            ListNode nextNode = head.next;
+            ListNode nextMid  = mid.next;
+            head.next = mid;
+            mid.next = nextNode;
+            mid = nextMid;
+            head = nextNode;
+        }
+    }
+    public ListNode reverseList(ListNode head){
+        ListNode node = null;
+        while(head!=null){
+            ListNode nextNode = head.next;
+            head.next = node;
+            node = head;
+            head = nextNode;
+        }
+        return node;
+    }
+}
