@@ -1,0 +1,74 @@
+//Time Complexity : O(1) for next() operation amortised
+//Space Complexity : O(h) where h is the height of the tree
+// Did this code successfully run on Leetcode : Yes
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class BSTIterator {
+
+    public TreeNode root;
+    Stack<TreeNode> s = new Stack<TreeNode>();
+    public BSTIterator(TreeNode root) 
+    {
+        this.root = root;
+        TreeNode t = root;
+        while(t!=null)
+        {
+            s.add(t);
+            t = t.left;
+        }
+    }
+    
+    public int next() 
+    {
+        int h = -1;
+        if(!s.isEmpty())
+        {
+            TreeNode t = s.pop();
+            h = t.val;
+            if(t.right!=null)
+            {
+                t = t.right;
+                while(t!=null)
+                {
+                    s.add(t);
+                    t = t.left;
+                }
+            }
+        }
+        
+        return h;
+    }
+    
+    public boolean hasNext() 
+    {
+        if(!s.isEmpty())
+        {
+            return true;
+        }
+        
+        return false;
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */

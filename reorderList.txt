@@ -1,0 +1,101 @@
+//Time Complexity : O(n)
+//Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+
+class Solution 
+{
+    
+    public void reorderList(ListNode head) 
+    {
+        ListNode sp = head;
+        ListNode fp = head;
+        
+        while(fp!=null && fp.next!=null)
+        {
+            sp = sp.next;
+            fp = fp.next.next;
+        }
+        
+        ListNode prev = null;
+        ListNode curr = sp;
+        ListNode front = curr.next;
+        
+        while(curr.next!=null)
+        {
+            curr.next = prev;
+            prev = curr;
+            curr = front;
+            front = front.next;
+        }
+        curr.next = prev;
+        ListNode second = curr;
+        ListNode first = head;
+        ListNode tmp;
+          while (second.next != null) 
+          {
+          tmp = first.next;
+          first.next = second;
+          first = tmp;
+
+          tmp = second.next;
+          second.next = first;
+          second = tmp;
+          }
+    }
+
+}
+
+//Brute Force Solution Accepted
+// class Solution {
+    
+//     public void reorderList(ListNode head) 
+//     {
+//         if(head == null)
+//         {
+//             return;
+//         }
+//         ListNode temp1 = head;
+//         while(temp1.next!=null)
+//         {
+//             //System.out.println(temp1.val);
+//             ListNode i = temp1;
+//             ListNode k = temp1;
+//             ListNode j = temp1.next;
+            
+//             while(j.next!=null)
+//             {
+//                 j = j.next;
+//                 k = k.next;
+//             }
+//             temp1 = temp1.next;
+//             if(i.next==j)
+//             {
+//                 break;
+//             }
+//             j.next = i.next;
+//             i.next = j;
+//             k.next=null;
+            
+            
+//         }
+//     }
+    
+   
+// }
+
+
+
