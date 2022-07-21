@@ -2,8 +2,8 @@ import java.util.HashSet;
 
 public class LinkedListIntersection {
     /**
-     * Time Complexity: O(N)
-     * Space Complexity: O(1)
+     * Time Complexity: O(M + N)
+     * Space Complexity: O(N)
      * */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
@@ -26,7 +26,7 @@ public class LinkedListIntersection {
         return null;
     }
     /**
-     * Time Complexity: O(N)
+     * Time Complexity: O(M + N)
      * Space Complexity: O(1)
      * */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
