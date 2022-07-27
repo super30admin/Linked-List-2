@@ -1,0 +1,34 @@
+// Time Complexity: O(M + N), M = length of first ListNode, N = ength of second ListNode
+// Space Complexity: O(1)
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null)
+            return null;
+        
+        ListNode nodeA = headA, nodeB = headB;
+        
+        while(nodeA != null && nodeB != null) {
+            nodeA = nodeA.next;
+            nodeB = nodeB.next;
+        }
+        
+        while(nodeA != null) {
+            headA = headA.next;
+            nodeA = nodeA.next;
+        }
+        
+        while(nodeB != null) {
+            headB = headB.next;
+            nodeB = nodeB.next;
+        }
+        
+        while(headA != null && headB != null) {
+            if(headA == headB)
+                return headA;
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return null;
+    }
+}
