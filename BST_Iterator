@@ -1,0 +1,28 @@
+// Time Complexity: O(1) for next() and hasNext() calls
+// Space Complexity: O(H), H = height of the tree
+
+class BSTIterator {
+    Stack<TreeNode> stack;
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<>();
+        controlledDFS(root);
+    }
+    
+    private void controlledDFS(TreeNode root) {
+        while(root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+    }
+    
+    public int next() {
+        TreeNode node = stack.pop();
+        if(node.right != null)
+            controlledDFS(node.right);
+        return node.val;
+    }
+    
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+}
