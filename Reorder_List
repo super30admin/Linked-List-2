@@ -13,7 +13,7 @@ class Solution {
             slow = slow.next;
             fast = fast.next.next;
         }
-        // splittin the lists
+        // splitting the lists
         ListNode currB = slow.next;
         slow.next = null;
         // reversing the second list
