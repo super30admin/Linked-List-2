@@ -1,0 +1,42 @@
+// Time Complexity: O(N), N = length of the ListNode
+// Space Complexity: O(1)
+
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null)
+            return;
+        
+        ListNode slow = head, prev = null, fast = head.next;
+        
+        // accessing middle node
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // splitting the lists
+        ListNode currB = slow.next;
+        slow.next = null;
+        // reversing the second list
+        while(currB != null) {
+            fast = currB.next;
+            currB.next = prev;
+            
+            prev = currB;
+            currB = fast;
+        }
+        
+        // reordering
+        ListNode currA = head;
+        currB = prev;
+        while(currA != null && currB != null) {
+            slow = currA.next;
+            fast = currB.next;
+            
+            currA.next = currB;
+            currB.next = slow;
+            
+            currA = slow;
+            currB = fast;
+        }
+    }
+}
