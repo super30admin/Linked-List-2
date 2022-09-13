@@ -1,0 +1,43 @@
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        keep_head = head
+        m = self.find_m(head)
+        if m:
+            tmp = m.next
+            m.next = None
+            m = tmp      
+        tail = self.reverse(m)       
+        while head:
+            tmp1 = head.next
+            head.next = tail
+            head = tmp1
+            if tail:
+                tmp2 = tail.next
+                tail.next = head
+                tail = tmp2
+    def reverse(self, head):
+        if not head or not head.next:
+            return head;
+        pre = None
+        tmp = None
+        while(head):
+            tmp = head.next
+            head.next = pre
+            pre = head
+            head = tmp
+        return pre
+    def find_m(self, head):
+        if not head:
+            return head
+        if not head.next:
+            return None
+        slow = head
+        fast = head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+# Successfully implemented on Leetcode

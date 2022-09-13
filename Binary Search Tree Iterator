@@ -1,0 +1,24 @@
+class BSTIterator:
+
+    def __init__(self, root: Optional[TreeNode]):
+        self.node = root
+        self.l    = []
+
+    def next(self) -> int:
+        while self.node != None or len(self.l) != 0 :
+            if self.node != None :
+                self.l.append(self.node)
+                self.node = self.node.left
+            else :
+                self.node = self.l.pop()
+                val = self.node.val;
+                self.node = self.node.right
+                return val
+
+    def hasNext(self) -> bool:
+        return self.node != None or len(self.l) != 0 
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Successfully implemented on Leetcode
