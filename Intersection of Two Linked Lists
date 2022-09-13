@@ -1,0 +1,32 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        lenA = self.getLength(headA)
+        lenB = self.getLength(headB)
+        if lenA >= lenB:
+            long_l, short_l = lenA, lenB
+            long_h, short_h = headA, headB
+        else:
+            long_l, short_l = lenB, lenA
+            long_h, short_h = headB, headA
+        while long_l > short_l:
+            long_h = long_h.next
+            long_l -= 1
+        while long_h is not short_h:
+            long_h, short_h = long_h.next, short_h.next
+        return long_h
+    def getLength(self, head: ListNode) -> int:
+        l = 0
+        while head:
+            l += 1
+            head = head.next
+        return l
+    
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+# Successfully implemented on Leetcode
