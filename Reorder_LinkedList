@@ -1,0 +1,57 @@
+//TimeComplexity O(n)
+//SpaceComplexity O(n
+
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        if(head == null || head.next == null)return;
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        //Find mid
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        //Form second list from mid next element
+        ListNode temp = slow.next;
+        slow.next = null;
+        
+        //Reverse second list
+       fast = reverse(temp);
+        slow = head;
+       
+        
+        //Merge both lists alternatively
+        while(fast != null){
+        temp = slow.next;
+        slow.next = fast;
+        fast = fast.next;
+        slow.next.next = temp;
+        slow = temp;
+       
+        }
+        
+
+    }
+    
+    //Reverse the list
+    private ListNode reverse(ListNode head){
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode second = curr.next;
+        
+        while(second != null){
+            
+            curr.next = prev;
+            prev = curr;
+            curr = second;
+            second = curr.next;
+            
+        }
+        curr.next = prev;
+       
+        return curr;
+    }
+}
