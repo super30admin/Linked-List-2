@@ -15,7 +15,7 @@
 //173. Binary Search Tree Iterator (Medium) - https://leetcode.com/problems/binary-search-tree-iterator/
  import java.util.Stack;
 
-public class BSTiterator {
+public class Solution {
     Stack<TreeNode> st; 
 
     public BSTIterator(TreeNode root) {
