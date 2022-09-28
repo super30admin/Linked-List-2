@@ -1,5 +1,5 @@
 //TimeComplexity O(n)
-//SpaceComplexity O(n
+//SpaceComplexity O(1)
 
 class Solution {
     public void reorderList(ListNode head) {
