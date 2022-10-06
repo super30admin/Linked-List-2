@@ -1,0 +1,103 @@
+#Binary search tree iterator
+#TC: O(1)
+#SC: O(h)
+class BSTIterator:
+    def __init__(self, root: Optional[TreeNode]):
+        self.iter = self._inorder(root)
+        self.nxt = next(self.iter, None)
+    
+    def _inorder(self, node: Optional[TreeNode]) -> Generator[int, None, None]:
+        if node:
+            yield from self._inorder(node.left)
+            yield node.val
+            yield from self._inorder(node.right)
+ 
+    def next(self) -> int:
+        res, self.nxt = self.nxt, next(self.iter, None)
+        return res
+ 
+    def hasNext(self) -> bool:
+        return self.nxt is not None
+ 
+ 
+ 
+ 
+ 
+#reorder list
+#TC: O(n)
+#SC: O(1)
+class Solution:
+    def reorderList(self, head):
+        #step 1: find middle
+        if not head: return []
+        slow, fast = head, head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        #step 2: reverse second half
+        prev, curr = None, slow.next
+        while curr:
+            nextt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextt    
+        slow.next = None
+        
+        #step 3: merge lists
+        head1, head2 = head, prev
+        while head2:
+            nextt = head1.next
+            head1.next = head2
+            head1 = head2
+            head2 = nextt
+ 
+ 
+ 
+ 
+ 
+ 
+#delete without head pointer
+TC: O(1)
+SC: O(1)
+def push(head_ref, new_data):
+ 
+    
+    new_node = Node()
+    new_node.data = new_data
+    new_node.next = head_ref
+    head_ref = new_node
+    return head_ref
+ 
+ 
+def printList(head):
+    temp = head
+    while(temp != None):
+        print(temp.data, end=' ')
+        temp = temp.next
+ 
+ 
+def deleteNode(node_ptr):
+    temp = node_ptr.next
+    node_ptr.data = temp.data
+    node_ptr.next = temp.next
+
+
+
+
+
+
+#Intersection of two linked lists
+#tc:O(n+m)
+#sc:O(1)
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        one = headA
+        two = headB
+
+        while one != two:
+            one = headB if one is None else one.next
+            two = headA if two is None else two.next
+        return one
+
