@@ -1,0 +1,32 @@
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if(head==None or head.next==None):
+            return
+        s=head
+        f=head
+        while(f.next!=None and f.next.next!=None):
+            s=s.next
+            f=f.next.next
+        k=s.next
+        p=None
+        f2=k.next
+        while(f2!=None):
+            k.next=p
+            p=k
+            k=f2
+            f2=f2.next
+        k.next=p
+        s2=k
+        s.next=None
+        s=head
+        t=head.next
+        while(s2!=None):
+            s.next=s2
+            s2=s2.next
+            s.next.next=t
+            s=t
+            if(t!=None):
+                t=t.next

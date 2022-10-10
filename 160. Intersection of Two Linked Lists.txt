@@ -1,0 +1,36 @@
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if(headA ==None or headB==None):
+            return None
+        if(headA==headB):
+            return headA
+        la=0
+        lb=0
+        ha=headA
+        hb=headB
+        while(ha!=None):
+            ha=ha.next
+            la=la+1
+        while(hb!=None):
+            hb=hb.next
+            lb=lb+1
+        dif=abs(lb-la)
+        if (la>lb):
+            for i in range(0,dif):
+                headA=headA.next
+            while(headA!=headB):
+                headA=headA.next
+                headB=headB.next
+            return headB
+        elif (lb>la):
+            for i in range(0,dif):
+                headB=headB.next
+            while(headA!=headB):
+                headA=headA.next
+                headB=headB.next
+            return headB
+        else:
+            while(headA!=headB):
+                headA=headA.next
+                headB=headB.next
+            return headB
