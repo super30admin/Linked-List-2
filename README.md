@@ -6,4 +6,4 @@
 
 ## Problem3 (https://practice.geeksforgeeks.org/problems/delete-without-head-pointer/1)
 
-## Problem4  (https://leetcode.com/problems/intersection-of-two-linked-lists/)
+## Problem4 (https://leetcode.com/problems/intersection-of-two-linked-lists/)
