@@ -26,14 +26,13 @@ class Solution:
         hA = headA
         hB = headB
         
-        if lenB > lenA:
-            while lenB != lenA:
-                hB = hB.next
-                lenB -= 1
-        else:
-            while lenB != lenA:
-                hA = hA.next
-                lenA -= 1
+        while lenB > lenA:
+            hB = hB.next
+            lenB -= 1
+
+        while lenA > lenB:
+            hA = hA.next
+            lenA -= 1
                 
         while hA and hB:
             if hA == hB:
