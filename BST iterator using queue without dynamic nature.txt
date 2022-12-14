@@ -1,0 +1,31 @@
+class BSTIterator:
+    
+
+    def __init__(self, root: Optional[TreeNode]):
+        #Inorder traversal
+        from collections import deque
+        self.Queue = deque()
+        self.inorder(root)
+        
+        
+    def inorder(self, root):
+        #base case
+        if root is None:
+            return
+        
+        #Logic
+        self.inorder(root.left)
+        self.Queue.append(root)
+        self.inorder(root.right)
+        
+
+    def next(self) -> int:
+        if len(self.Queue)!= 0:
+            return self.Queue.popleft().val
+        return -1
+        
+
+    def hasNext(self) -> bool:
+        if len(self.Queue)!= 0:
+            return True
+        return False

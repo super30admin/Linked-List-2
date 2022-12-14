@@ -1,0 +1,48 @@
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        
+        if head == None or head.next == None:
+            return
+        
+        #1. Find the middle
+        slow = head
+        fast = head
+        
+        while(fast.next != None and fast.next.next!=None):
+            slow = slow.next
+            fast = fast.next.next
+            
+        #slow is at our intended middle
+        #2. Reverse the second half of the LL
+        fast = self.reverse(slow.next)
+        slow.next = None
+        
+        #3. Merge the 2 LLs
+        slow = head
+        while(fast!=None):
+            temp = slow.next
+            slow.next = fast
+            fast = fast.next
+            slow.next.next = temp
+            slow = temp
+            
+        return slow
+        
+        
+    def reverse(self,head):
+        prev = None
+        curr = head
+        fast = curr.next
+            
+        while(fast!=None):
+            curr.next = prev
+            prev = curr
+            curr = fast
+            fast = fast.next
+            
+        curr.next = prev
+            
+        return curr
