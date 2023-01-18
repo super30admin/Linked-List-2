@@ -1,0 +1,65 @@
+// Time Complexity : o(n)
+// Space Complexity : o(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+* get length of two lists
+* move ptr of the lengthier lists to |len1 - len2| distance
+* move ptr to both the lists
+* when the two ptrs point to the same node , it is the intersection point
+* */
+
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int l1 = getLength(headA);
+        int l2 = getLength(headB);
+
+        if(l2> l1){
+            ListNode temp = headA;
+            headA = headB;
+            headB = temp;
+        }
+
+        int diff = Math.abs(l1-l2);
+        while(diff>0){
+            headA = headA.next;
+            diff--;
+        }
+
+        while(headA!=null && headB!=null){
+            if(headA==headB){
+                return headA;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return null;
+
+    }
+
+    int getLength(ListNode head){
+        int i = 0;
+        while(head!=null){
+            i++;
+            head = head.next;
+        }
+
+        return i;
+    }
+}

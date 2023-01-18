@@ -1,0 +1,31 @@
+// Time Complexity : o(n)
+// Space Complexity : o(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+* Update node.val to node.next.val until the last node is reached
+* delete the last node
+* */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void deleteNode(ListNode node) {
+        ListNode prev = null;
+        while(node.next!=null){
+            node.val = node.next.val;
+            prev = node;
+            node = node.next;
+        }
+        prev.next = null;
+    }
+}

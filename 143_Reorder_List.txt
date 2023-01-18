@@ -1,0 +1,84 @@
+// Time Complexity : o(n)
+// Space Complexity : o(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+* get the middle node
+* reverse the second half
+* use ptrs to point to beginning of  the linked list
+* connect l1 to l2
+* Connect l2 to next node in l1
+* move the ptrs
+* */
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+
+        ListNode mid = getMiddle(head);
+        ListNode l2 = reverse(mid);
+        ListNode l1 = head;
+        ListNode prev = null;
+        while(l1 !=null && l2!=null){
+            ListNode l1Next = l1.next;
+            ListNode l2Next = l2.next;
+            l1.next = l2;
+            l2.next = l1Next;
+            prev = l2;
+            l1 = l1Next;
+            l2 = l2Next;
+        }
+        if(l2!=null){
+            prev.next = l2;
+        }
+    }
+
+    ListNode getMiddle(ListNode node ){
+        if(node == null || node.next == null){
+            return null;
+        }
+        ListNode slow = node;
+        ListNode fast = node;
+        ListNode prev =null;
+        while(fast!=null && fast.next !=null){
+
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = null;
+        return slow;
+    }
+
+    ListNode reverse(ListNode node){
+        if(node == null){
+            return null;
+        }
+        ListNode prev = null;
+        ListNode curr = node;
+        ListNode fast = node.next;
+
+        while(fast!=null){
+            curr.next = prev;
+            prev = curr;
+            curr = fast;
+            fast = fast.next;
+        }
+
+        curr.next = prev;
+        return curr;
+    }
+}
