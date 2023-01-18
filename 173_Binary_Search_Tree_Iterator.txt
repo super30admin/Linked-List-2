@@ -1,0 +1,62 @@
+// Time Complexity : hasnext() - o(1) next() - o(1) amortized
+// Space Complexity : o(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+* Use stack so that we can pop the leftmost node first.
+* When constructor is called recursively add left child into the stack
+* when a next method is called, pop  from stack and recursively add the left child of the right child
+* when hasNext is called , just check if the stack is empty or not
+* */
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class BSTIterator {
+
+    Stack<TreeNode> s = new Stack<>();
+    public BSTIterator(TreeNode root) {
+        pushleft(root);
+    }
+
+    public int next() {
+        TreeNode node = s.pop();
+        pushleft(node.right);
+        return node.val;
+    }
+
+    public boolean hasNext() {
+        return !s.isEmpty();
+    }
+
+    void pushleft(TreeNode root){
+        if(root == null){
+            return;
+        }
+        s.add(root);
+        pushleft(root.left);
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */
