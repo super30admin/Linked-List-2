@@ -1,7 +1,7 @@
 # Author: Naveen US
 # Title: Binary Search Tree Iterator
 
-# Time complexity: O(h) 
+# Time complexity: O(h) , h - height  of the tree 
 # Space complexity: O(h)
 # Did the code run on leetcode: Yes
 
