@@ -29,11 +29,13 @@ class BSTIterator {
         }
     }
 
+    // Time Complexity : O(h)
     public BSTIterator(TreeNode root) {
         stack = new Stack<>();
         traverse(root);
     }
     
+    // Time Complexity : O(h)
     public int next() {
         TreeNode curr = stack.pop();
         traverse(curr.right);
@@ -41,6 +43,7 @@ class BSTIterator {
         return curr.val;
     }
     
+    // Time Complexity : O(1)
     public boolean hasNext() {
         return !stack.isEmpty();
     }
