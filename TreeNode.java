@@ -22,29 +22,25 @@ public class TreeNode {
 class BSTIterator {
     Stack<TreeNode> stack;
 
-    public BSTIterator(TreeNode root) {
-        stack = new Stack<>();
+    private void traverse(TreeNode root) {
         while(root != null) {
             stack.push(root);
             root = root.left;
         }
     }
+
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<>();
+        traverse(root);
+    }
     
-    // Time Complexity : O(h)
     public int next() {
         TreeNode curr = stack.pop();
-        if(curr.right != null) {
-            TreeNode next = curr.right;
-            while(next != null) {
-                stack.push(next);
-                next = next.left;
-            }
-        }
+        traverse(curr.right);
 
         return curr.val;
     }
     
-    // Time Complexity : O(1)
     public boolean hasNext() {
         return !stack.isEmpty();
     }
