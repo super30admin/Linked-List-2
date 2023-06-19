@@ -1,21 +1,26 @@
 package linkedList2;
 
 /**
- * 
- * In iterator we try to handle the dynamicity of the parent data structure. Here when a BSTIterator object is initialized with the root of a tree, we create iterate from root to the left child and 
- * then further left in an iterative manner till we reach null and store each node into the stack. When next() is called we pop the stack to return the value and only then process the right subtree for
- * that element hence handling dynamicity.
- * 
- * Time Complexity : 
- * next() : Amortized complexity is O(1) as in majority of the cases at higher levels the right subtree is just one step away from the popped element.
- * hasNext() : O(1) complexity.
- * 
- * Space Complexity : O(1) as the stack created is not in a user oriented function.
- * 
- * Did this code successfully run on Leetcode : yes
- * 
- * Any problem you faced while coding this : No
- */
+* 
+* In iterator we try to handle the dynamicity of the parent data structure.
+* Here when a BSTIterator object is initialized with the root of a tree, we
+* keep iterating from root to the left child and then further left in an
+* till we reach null and store each node into the stack. When
+* next() is called we pop the stack to return the value and only then process
+* the right subtree for that node hence handling dynamicity.
+* 
+* Time Complexity : 
+* next() : Amortized complexity is O(1) as in majority of the
+* cases at higher levels the right subtree is just one step away from the
+* popped element. 
+* hasNext() : O(1) complexity.
+* 
+* Space Complexity : O(1) as the stack created is not in a user oriented
+* function.
+* 
+* Did this code successfully run on Leetcode : yes
+* 
+* Any problem you faced while coding this : No */
 import java.util.Stack;
 
 class TreeNode {
