@@ -14,6 +14,10 @@ Join the two linked list by taking one node from each of the linked list.
 
 */
 
+#include<iostream>
+
+using namespace std;
+
 typedef struct ListNode{
     int val;
     ListNode* next;
