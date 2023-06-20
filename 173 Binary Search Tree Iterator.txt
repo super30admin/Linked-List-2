@@ -1,0 +1,27 @@
+173. Binary Search Tree Iterator
+
+//TC=O(1) SC=O(h)
+class BSTIterator {
+    Stack<TreeNode> st=new Stack<>();
+    public BSTIterator(TreeNode root) {
+        while(root!=null){
+            st.push(root);
+            root=root.left;
+        }
+    }
+    
+    public int next() {
+        TreeNode result =st.pop();
+        TreeNode node=result.right;
+        while(node!=null){
+            st.push(node);
+            node=node.left;
+        }
+        return result.val;
+
+    }
+    
+    public boolean hasNext() {
+        return !st.isEmpty();
+    }
+}
