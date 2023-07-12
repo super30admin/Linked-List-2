@@ -1,5 +1,5 @@
-
-
+// tc = O(n)
+// sc = O(1)
 /**
  * Definition for singly-linked list.
  * public class ListNode {
