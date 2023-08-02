@@ -8,12 +8,12 @@ import java.util.Stack;
 
 class BinarySearchTreeIterator {
 
-    private Stack<TreeNode> st;
+    private Stack<TreeNode> st; // Declare a stack to store tree nodes
 
     public BinarySearchTreeIterator(TreeNode root)
     {
-        this.st= new Stack<>();
-        dfs(root);
+        this.st= new Stack<>(); // Initialize the stack
+        dfs(root); // Perform a Depth-First Search (DFS) to push all left nodes into the stack
 
     }
 
@@ -21,20 +21,19 @@ class BinarySearchTreeIterator {
     {
         while(root!=null)
         {
-            st.push(root);
-            root=root.left;
+            st.push(root); // Push the current node into the stack
+            root = root.left; // Move to the left child of the current node
         }
     }
 
     public int next()
     {
-        // Initially, we remove the element from the stack and subsequently investigate if there are any elements present on the left side of the right subtree through a recursive DFS approach.
-        TreeNode curr=st.pop();
-        dfs(curr.right);
-        return curr.val;
+        TreeNode curr=st.pop(); // Remove the top node from the stack, representing the next element in the in-order traversal
+        dfs(curr.right); // Perform a DFS on the right child of the removed node to explore its left nodes
+        return curr.val; // Return the value of the removed node
     }
 
-    //Check if the stack is empty
+    // Check if the stack is empty, which indicates if there is any next element in the in-order traversal
     public boolean hasNext()
     {
         return (!st.isEmpty());
