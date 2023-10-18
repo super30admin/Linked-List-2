@@ -9,6 +9,8 @@
  *     }
  * }
  */
+ // Time Complexity: O(n+m)
+ // Space Complexity:O(1)
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
