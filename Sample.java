@@ -153,7 +153,7 @@ class BSTIterator {
  */
 
 
-// Time Complexity : O(1)
+// Time Complexity : O(1) average 
 // Space Complexity : O(h)
 // Did this code successfully run on Leetcode : yes
 // Any problem you faced while coding this : I didnt face any problem while coding this.
@@ -204,3 +204,22 @@ class BSTIterator {
  * int param_1 = obj.next();
  * boolean param_2 = obj.hasNext();
  */
+
+
+// ## Problem3 (https://practice.geeksforgeeks.org/problems/delete-without-head-pointer/1)
+// Time Complexity : O(1) 
+// Space Complexity : O(1)
+// Did this code successfully run on geeksforgeeks : yes
+// Any problem you faced while coding this : I didnt face any problem while coding this.
+
+class Solution
+{
+    void deleteNode(Node del)
+    {
+         // Your code here
+         Node temp = del.next;
+         del.data = temp.data;
+         del.next = temp.next;
+         temp = null;
+    }
+}
