@@ -7,6 +7,38 @@
  * };
  */
 class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int LenA = 0, LenB=0;
+        ListNode *curr = headA;
+        while(curr!=NULL){
+            curr = curr->next;
+            LenA++;
+        }
+        curr = headB;
+        while(curr!=NULL){
+            curr = curr->next;
+            LenB++;
+        }
+        while(LenA>LenB){
+            headA = headA->next;
+            LenA--;
+        }
+        while(LenB>LenA){
+            headB = headB->next;
+            LenB--;
+        }
+        while(headA!=headB){
+          headA = headA->next;
+          headB = headB->next;  
+        }
+        return headA;
+    }
+};
+
+
+/*
+class Solution {
     int Length_Calculator(ListNode* node){
         int length=0;
         while(node!=NULL){
@@ -45,3 +77,6 @@ public:
 return NULL;        
     }
 };
+
+
+*/
