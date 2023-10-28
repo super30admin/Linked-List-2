@@ -1,0 +1,8 @@
+#time complexity: O(1)
+#Space complexity: O(1)
+class Solution:
+    #Function to delete a node without any reference to head pointer.
+    def deleteNode(self,curr_node):
+        next1=curr_node.next
+        curr_node.data=next1.data
+        curr_node.next=next1.next

@@ -1,0 +1,40 @@
+#time complexity: O(n)
+#space complexity: O(1)
+#did it run on leetcode: yes
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        if head == None or head.next== None or head.next.next == None: return
+        slow = fast = head
+        #find middle point of list
+        while(fast and fast.next):
+            slow = slow.next
+            fast = fast.next.next
+        #reverse second half of list
+        fast = self.reverse(slow.next)
+        slow.next=None
+        #merge the two list
+        slow = head
+        while(fast!=None):
+            temp = slow.next
+            slow.next = fast
+            fast = fast.next
+            slow.next.next = temp
+            slow = temp
+        
+    def reverse(self, head:ListNode):
+        prev = None
+        curr = head
+        fast = head.next
+        while(fast!=None):
+            curr.next = prev
+            prev = curr
+            curr = fast
+            fast=fast.next
+        curr.next=prev
+        return curr
+        

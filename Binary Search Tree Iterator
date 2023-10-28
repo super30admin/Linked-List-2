@@ -1,0 +1,35 @@
+#time complexity: O(1)
+#Space complexity: O(h)
+#did it run on leetcode: yes
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class BSTIterator:
+
+    def __init__(self, root: Optional[TreeNode]):
+        self.root = root
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
+        
+    def next(self) -> int:
+        if self.stack:
+            x = self.stack[-1]
+            z = self.stack.pop()
+            
+        if z.right:
+            z = z.right
+            while z:
+                self.stack.append(z)
+                z = z.left
+        return x.val
+        
+
+    def hasNext(self) -> bool:
+        if self.stack:
+            return True
+        return False
