@@ -1,4 +1,4 @@
-// Time Complexity : O(n) = n/2 to get middle, n/2 to reverse half list, n to reorder
+// Time Complexity : O(n)
 // Space Complexity : O (1) no extra space
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : typos
