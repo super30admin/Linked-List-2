@@ -71,7 +71,63 @@ Follow up: Could you write a solution that runs in O(m + n) time and use only O(
 #         self.next = None
 
 class Solution:
+    
+    """
+    Accepted
+    Time Complexity: O(m + n) where m and n are the lengths of the two lists
+    Space Complexity: O(1)
+    
+    Explanation:
+        Find the length of the two lists. Find the difference between the lengths. 
+        Move the pointer of the longer list by the difference. Then move both pointers until they are equal.
+        If yes, return the node. Else return None. 
+        #NOTE -> Its simmilar to sliding window. There is a window of size diff. Move it to make the two pointers equal.
+    
+    """
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        pass
-
+        s1, s2 = 0, 0
+        walker = headA
+        while walker is not None:
+            walker = walker.next
+            s1 += 1
+        walker = headB
+        while walker is not None:
+            walker = walker.next
+            s2 += 1
+        diff = abs(s1 -s2)
+        walker2 = None
+        if s1 > s2:
+            walker = headA
+            walker2 = headB
+        else:
+            walker = headB
+            walker2 = headA
+        for i in range(diff): # moving the bigger list by the difference
+            walker = walker.next
+        while walker is not None: # copmaring the two lists
+            if walker == walker2:
+                return walker
+            walker = walker.next
+            walker2 = walker2.next
+    
+    """
+    Accepted
+    Time Complexity: O(m + n) where m and n are the lengths of the two lists
+    Space Complexity: O(m) where m is the length of the first list
+    
+    Explanation:
+        Store the first list in a set. Then traverse the second list and check if the node is in the set.
+        If yes, return the node. Else return None.
+    """
+    def getIntersectionNode2(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        res = set()
+        while headA is not None:
+            res.add(headA)
+            headA = headA.next
+        while headB is not None:
+            if headB in res:
+                return headB
+            headB = headB.next
+            
+            
 LeetCode(PROBLEM, Solution).check()

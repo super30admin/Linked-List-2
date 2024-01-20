@@ -44,10 +44,74 @@ The number of nodes in the list is in the range [1, 5 * 104].
 #         self.val = val
 #         self.next = next
 class Solution:
+    
+    """
+    Accepted
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    
+    Explanation:
+        Find the middle of the list. Reverse the list from the middle. Then merge the two lists.
+    """
     def reorderList(self, head: Optional[ListNode]) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
-        pass
+        dummy = ListNode(-1)
+        slow, fast = head, head
+        while fast.next is not None and fast.next.next is not None: #finding mid
+            slow = slow.next
+            fast = fast.next.next
+        # preparing for reversing the second list
+        head2 =  slow.next
+        slow.next = None
+        prev = None
+        walker = head2
+        while walker is not None: # inplace reverse
+            tmp = walker.next
+            walker.next = prev
+            prev = walker 
+            walker = tmp
+        walker = dummy
+        head2 =  prev
+        while head is not None: #merging the two lists, head and head2
+            temp = head.next
+            walker.next = head
+            head.next = None
+            walker = walker.next
+            head = temp
+            if head2 is None:
+                break
+            temp = head2.next
+            walker.next = head2
+            head2.next = None
+            walker = walker.next
+            head2 = temp
+        return dummy.next # not required, technically the list is reordered in place
+    
+    """
+    Accepted
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    
+    Explanation:
+        Traverse the list and store the nodes in a stack. Als maintain a walker node to traverse the list.
+        Then pop the nodes from the stack and insert them after the walker node.
+        This will result in the list being reordered.
+    """
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        dummy = ListNode(-1)
+        stack = deque()
+        walker = head
+        size = 0
+        while walker is not None:
+            stack.append(walker)
+            walker = walker.next
+            size += 1
+        beg = head
+        walker = dummy
+        for i in range(size//2) :
+            end = stack.pop()
+            end.next = head.next
+            head.next = end
+            head= head.next.next
+        head.next = None
 
 LeetCode(PROBLEM, Solution).check()
