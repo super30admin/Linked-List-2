@@ -1,0 +1,46 @@
+TC-O(N) SC-O(1)
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head is None or head.next is None:
+            return
+        
+        # Split the list 
+        slow = head
+        fast = head
+        while fast.next is not None and fast.next.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        
+        # Reverse the second half of linkedlist
+
+        fast = self.reverselist(slow.next)
+        slow.next = None  # Disconnect the first and second halves
+        slow=head
+        while fast!=None:
+            temp=slow.next
+            slow.next=fast
+            fast=fast.next
+            slow.next.next=temp
+            slow=temp
+        
+        # Merge the two halves
+        
+    def reverselist(self, head: Optional[ListNode]) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        
+        prev = None
+        curr = head
+        fast= curr.next
+        while fast !=None:
+            
+            curr.next = prev
+            prev = curr
+            curr = fast
+            fast=fast.next
+        curr.next=prev
+        
+        return curr
