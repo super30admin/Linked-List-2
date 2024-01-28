@@ -1,0 +1,19 @@
+# Delete a node without the head pointer
+
+#TC: O(1)
+#SC: O(1)
+
+class Solution:
+    # Function to delete a node without any reference to head pointer.
+    def deleteNode(self, curr_node):
+        # Copy the data of the next node to the current node
+        curr_node.data = curr_node.next.data
+
+        # Store the reference to the next node
+        temp = curr_node.next
+
+        # Remove the next node by bypassing it
+        curr_node.next = curr_node.next.next
+
+        # Delete the next node
+        del temp
