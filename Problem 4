@@ -1,0 +1,33 @@
+# Intersection of two Linked List
+
+#TC : O(m+n)
+#SC : O(1)
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        # Step 1: Find the lengths of the linked lists
+        lenA, lenB = 0, 0
+        currA, currB = headA, headB
+        while currA:
+            lenA += 1
+            currA = currA.next
+        while currB:
+            lenB += 1
+            currB = currB.next
+        
+        # Step 2: Align the pointers of the longer and shorter linked lists
+        currA, currB = headA, headB
+        while lenA > lenB:
+            currA = currA.next
+            lenA -= 1
+        while lenB > lenA:
+            currB = currB.next
+            lenB -= 1
+        
+        # Step 3: Traverse both lists together until we find a common node
+        while currA != currB:
+            currA = currA.next
+            currB = currB.next
+        
+        # Step 4: Return the common node if found, else return None
+        return currA

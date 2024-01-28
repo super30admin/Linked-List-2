@@ -1,0 +1,48 @@
+# Reorder List
+#Tc: O(n)
+#SC: O(1)
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if not head or not head.next:
+            return
+
+        # Step 1: Find the middle of the linked list
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Step 2: Reverse the second half of the linked list
+        prev, curr = None, slow
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+
+        # prev now points to the head of the reversed second half
+        # Step 3: Merge the first half and the reversed second half alternately
+        first_half, second_half = head, prev
+        while second_half.next:
+            first_half_next = first_half.next
+            second_half_next = second_half.next
+
+            # Insert the node from the second half into the first half
+            first_half.next = second_half
+            second_half.next = first_half_next
+
+            # Move pointers for the next iteration
+            first_half = first_half_next
+            second_half = second_half_next
+
+        # Handling the case where the length of the original list is odd
+        if first_half == second_half:
+            first_half.next = None
+        else:
+            first_half.next.next = None
+
+        
