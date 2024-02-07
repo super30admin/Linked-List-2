@@ -58,15 +58,37 @@ Could you implement next() and hasNext() to run in average O(1) time and use O(
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+"""
+Accepted
+Time Complexity: O(n) for the constructor and O(1) for next and hasNext
+Space Complexity: O(n) for the array
+
+Approach: Inorder Traversal and Store in Array
+    Mantain an idx to keep track of the current index of the array
+"""
 class BSTIterator:
 
+    def helper(self, root):
+        if root is None:
+            return
+        self.helper(root.left)
+        self.res.append(root.val)
+        self.helper(root.right)
+
     def __init__(self, root: Optional[TreeNode]):
-        
+        self.res = []
+        self.helper(root)
+        self.idx = -1
 
     def next(self) -> int:
-        
+        self.idx += 1
+        temp = self.res[self.idx]
+        return temp
 
     def hasNext(self) -> bool:
+        if self.idx + 1 < len(self.res): return True
+        return False
         
 
 
