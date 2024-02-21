@@ -1,3 +1,14 @@
+//Time Complexity = O(m+n)
+//Space Complexity = O(1)
+// Does it run on LeetCode successfully? : Yes
+// Any difficulties: None.
+
+/*
+Find Delta between both's length
+Move Bigger List's head by that delta.
+Traverse until both heads are same.
+*/
+
 public class IntersectionOfList {
 
     class ListNode{// Singly Linkedlist representation
