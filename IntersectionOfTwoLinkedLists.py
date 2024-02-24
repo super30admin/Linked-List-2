@@ -1,3 +1,7 @@
+'''
+TC: O(n+m) n and m being length of both the individual lists. Here we will take the max of them!
+SC: O(1)
+'''
 # Definition for singly-linked list.
 from typing import Optional
 
