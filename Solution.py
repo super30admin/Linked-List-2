@@ -52,6 +52,8 @@ def getIntersectionNode(self, headA, headB):
     """
     :type head1, head1: ListNode
     :rtype: ListNode
+    time: O(m+n)
+    space: O(1)
     """
     def get_length(head):
         ans = 0
