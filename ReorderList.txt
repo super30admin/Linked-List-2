@@ -1,0 +1,60 @@
+Time Complexity: O(n)
+Space Complexity: O(1)
+Challenges: Getting an idea to reverse the second half of the string. Breaking the linkedlist in the mid way in the even and odd scenarios.
+Approach:  Steps to solve this problem :
+1. Reverse second part of the array
+2. Break the connection between first and second linkedList.
+3. Traverse through both of them to form final alternating array.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {         
+        ListNode slow=head;
+        ListNode fast=head;
+        if(head.next==null) return;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+		/*
+		ListNode dummyNode= new ListNode(0);
+        dummyNode.next=head;       
+        ListNode slow=dummyNode;
+        ListNode fast=dummyNode;
+        if(head.next==null) return;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }*/
+        fast=reverse(slow.next);
+        slow.next=null;
+        slow=head;   
+        while(slow!=null && fast!=null){
+            ListNode temp=slow.next;
+            slow.next=fast;
+            fast=fast.next; 
+            slow.next.next=temp;
+            slow=temp;
+        }       
+    }
+
+    public ListNode reverse(ListNode input){
+        ListNode prev=null;
+        ListNode curr=input;
+        while(curr!=null){
+            ListNode next=curr.next; 
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+}

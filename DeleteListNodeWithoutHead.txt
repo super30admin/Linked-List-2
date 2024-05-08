@@ -1,0 +1,19 @@
+Time Complexity: O(1);
+Space Complexity: none
+Challenge: Looking at the problem , I was initially looking to find prev node. so that prev.next would be currnode.next.next. 
+But no way we can get the prev node without head pointer
+Approach: Change current node value to next node value. Delete next node.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val=node.next.val;
+        node.next=node.next.next;
+    }
+}

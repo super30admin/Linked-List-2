@@ -1,0 +1,81 @@
+Time Complexity: O(n)
+Space Complexity: O(n)
+Approach: In this approach , we are storing every element in to the list. 
+We are maintaining an index variable and using it we are tracking what index should be returned as a next() element.
+If the the index reaches the max length of the arraylist then hasNext would be false.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class BSTIterator {
+    List<Integer> list;
+    int index;
+    public BSTIterator(TreeNode root) {
+        list=new ArrayList<>();
+        helper(root);        
+    }
+    
+    public void helper(TreeNode node){
+        if(node==null) return;
+        helper(node.left);
+        list.add(node.val);
+        helper(node.right);
+    }
+
+    public int next() {
+       int returnValue= list.get(index);
+       index++;
+       return returnValue;
+    }
+    
+    public boolean hasNext() {
+       return index<list.size();
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */
+ 
+/***********Optmized technique****************/
+Time Complexity: O(1) in average case, if the tree is left skewed or right skewed then it is O(h).
+Space Complexity: O(h): height of tree
+class BSTIterator {
+    Stack<TreeNode> stack;
+    public BSTIterator(TreeNode root) {
+        //stack=new LinkedList<>();
+        stack=new Stack<>();
+        helper(root);        
+    }
+    //This helper is going to put all elements into the stack.
+    public void helper(TreeNode node){
+        while(node!=null){
+            stack.add(node);
+            node=node.left;
+        }        
+    }
+
+    public int next() {
+       TreeNode node=stack.pop();  
+       helper(node.right);  
+       return node.val;
+    }
+    
+    public boolean hasNext() {
+       return !stack.isEmpty();
+    }
+}

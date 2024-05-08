@@ -1,0 +1,51 @@
+Time Complexity: O(m+n)--> m being length of first list and n being length of second list. 
+Space Complexity: O(1)
+Approach: Initially traverse through both the lists to get the total length. 
+What ever is the length that is higher, decrement it until a common length is reached for both the lists.
+Traverse through both the lists at a time to find common node.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lengthA=0;
+        int lengthB=0;
+        int diff=0;
+        ListNode curr=headA;
+        while(curr!=null){
+            lengthA++;
+            curr=curr.next;
+        }
+        curr=headB;
+        while(curr!=null){
+            lengthB++;
+            curr=curr.next;
+        }
+        while(lengthA>lengthB){            
+                headA=headA.next;
+                lengthA--;
+        }
+        
+        while(lengthB>lengthA){
+                headB=headB.next;
+                lengthB--;
+        }        
+
+        while(headA!=null && headB!=null){           
+            if(headA==headB){
+                return headA;
+            }
+            headA=headA.next;
+            headB=headB.next;
+        }
+        return null;
+    }
+}
