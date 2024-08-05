@@ -1,0 +1,123 @@
+Linked-List-2
+
+Problem1 (https://leetcode.com/problems/binary-search-tree-iterator/)
+
+#TC  O(1)  
+#SC O(h)
+
+class BSTIterator:
+
+    def __init__(self, root: Optional[TreeNode]):
+        
+        self.stack = []
+        self.dfs(root)
+
+    def dfs(self, root: Optional[TreeNode]) -> None:
+        
+        while root != None:
+            self.stack.append(root)
+            root = root.left
+
+
+    def next(self) -> int:
+        popped = self.stack.pop()
+        self.dfs(popped.right)
+        return popped.val
+        
+
+
+    def hasNext(self) -> bool:
+        return(len(self.stack) > 0)
+
+
+
+Problem2 (https://leetcode.com/problems/reorder-list/)
+
+#TC O(n) and SC O(1)
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head == None or head.next == None :
+            return head
+        
+        #1. finding middle element
+        slow = head
+        fast = head
+        while fast.next != None and fast.next.next != None:
+            slow = slow.next
+            fast = fast.next.next
+
+        #2. reverse 2nd half of LL
+        fast = self.reverse(slow.next)
+        slow.next = None
+
+        #3. merge 2 LL
+        slow = head
+        while fast != None:
+            temp = slow.next
+            slow.next = fast
+            fast = fast.next
+            slow.next.next = temp
+            slow = temp
+
+
+
+    def reverse(self, head: Optional[ListNode]) -> ListNode:
+        if head == None or head.next == None :
+            return head
+
+        prev = None
+        curr = head
+        fast = head.next
+        while fast != None:
+            curr.next = prev
+            prev = curr
+            curr = fast
+            fast = fast.next
+        curr.next = prev
+
+        return curr
+
+
+
+
+Problem4 (https://leetcode.com/problems/intersection-of-two-linked-lists/)
+
+#TC O(m+n) and SC O(1)
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if headA == None or headB == None:
+            return None
+
+        lenA = 0
+        curr = headA
+        while curr != None:
+            lenA = lenA + 1
+            curr = curr.next 
+
+        lenB = 0
+        curr = headB
+        while curr != None:
+            lenB = lenB + 1
+            curr = curr.next 
+
+
+        while lenA > lenB:
+            headA = headA.next
+            lenA = lenA - 1
+        
+        while lenB > lenA:
+            headB = headB.next
+            lenB = lenB - 1
+
+        while headA != headB:
+            headA = headA.next
+            headB = headB.next
+        
+        return headA
+
+
