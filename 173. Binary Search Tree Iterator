@@ -1,0 +1,63 @@
+Time Complexity: O(n)
+Space complexity: O(n)
+Did this code successfully submitted on leetcode: Yes
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class BSTIterator {
+
+    Stack<Integer> stack = new Stack<>();
+    Stack<Integer> stackCopy = new Stack<>();
+    
+    public BSTIterator(TreeNode root) {
+        
+        fillup(root);
+        
+        while(!stack.empty()){
+            stackCopy.push(stack.pop());
+            //System.out.println(stackCopy.peek());
+        }
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        return stackCopy.pop();
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stackCopy.empty();
+    }
+    
+    private void fillup(TreeNode root){
+        
+        //base case
+        if(root==null)
+            return;
+        
+        //logic
+        if(root.left!=null){
+            fillup(root.left);
+        }
+        
+        stack.push(root.val);
+        
+        if(root.right!=null){
+            fillup(root.right);
+        }
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */

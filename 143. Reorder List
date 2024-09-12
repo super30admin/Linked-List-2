@@ -1,0 +1,53 @@
+Time complexity: O(n)
+Space complexity: O(1)
+Did this code submitted successfully on leetcode: Yes
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        if(head==null)
+            return;
+        
+        ListNode slow=head;
+        ListNode fast = head;
+        
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        
+        ListNode mid = slow;
+        ListNode curr = slow.next;
+        
+        if(curr!=null){
+            ListNode tmp = curr.next;
+            curr.next = null;
+            curr = tmp;
+        }
+        
+        while(curr!=null){
+            ListNode temp = curr.next;
+            curr.next = mid.next;
+            mid.next= curr;
+            curr = temp;
+        }
+        
+        ListNode start = head, end = mid.next;
+        
+        while(end!=null){
+            mid.next = end.next;
+            end.next = start.next;
+            start.next = end;
+            start = end.next;
+            end = mid.next;
+        }
+    }
+}
