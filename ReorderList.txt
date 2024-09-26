@@ -1,0 +1,50 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this :NO
+
+/* basic idea is to split the LL in half and reverse the half and merge them */
+
+class Solution {
+    public void reorderList(ListNode head) {
+        
+       /* edge case*/ 
+      if (head == null || head.next == null)
+          return;
+        
+      ListNode prev = null, slow = head, fast = head, l1 = head;
+      
+        // get the mid of the list
+      while (fast != null && fast.next != null) {
+        prev = slow;
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+      
+    // first part end set next to null
+      prev.next = null;
+        
+    // reverse the second part
+    ListNode l2 = null, curr = slow, next = null;
+      
+      while (curr != null) {
+        next = curr.next;
+        curr.next = l2;
+        l2 = curr;
+        curr = next;
+      }
+      
+        //merging two list
+        while (l1 != null) {
+        ListNode n1 = l1.next, n2 = l2.next;
+        l1.next = l2;
+        
+        if (n1 == null)
+          break;
+            
+        l2.next = n1;
+        l1 = n1;
+        l2 = n2;
+      }
+    }
+}
