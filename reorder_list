@@ -1,0 +1,54 @@
+
+ // Definition for singly-linked list.
+ class ListNode {
+      val: number
+      next: ListNode | null
+      constructor(val?: number, next?: ListNode | null) {
+          this.val = (val===undefined ? 0 : val)
+          this.next = (next===undefined ? null : next)
+      }
+  }
+
+
+/**
+ Do not return anything, modify head in-place instead.
+ */
+function reorderList(head: ListNode | null): void {
+
+    // go to middle of list - use two pointer
+    // assign first half end to null 
+    // reverse the second half
+    // make connections with 3 pointers -> one at head of fast, one at head of slow and temp at slow.next 
+    // move the fast pointer to fast.next
+
+    let slow: ListNode | null = head;
+    let fast: ListNode | null = head;
+
+    while(fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    const reverse = (curr: ListNode): ListNode => { 
+    let prev: ListNode | null = null;
+    while (curr !== null) {
+        let nextNode: ListNode = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = nextNode;
+    }
+    return prev
+    }
+   fast = reverse(slow.next);
+    slow.next = null;
+
+    slow = head;
+
+    while(fast !== null && slow !== null) {
+    let temp: ListNode = slow.next;
+    slow.next = fast;
+    fast = fast.next;
+    slow.next.next = temp;
+    slow = temp;
+    }
+};
