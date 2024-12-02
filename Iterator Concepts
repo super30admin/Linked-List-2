@@ -1,0 +1,31 @@
+1) Iterators Used to iterate over data structures
+
+2) Memory is not utilized to full extent {Lazy evaluation}
+
+3) Has two functions :
+    hashNext() => whether it has next element or not
+    next() => it returns 1 and moved to next element, does not know information about future elements, only
+              knows about current element it is iterating on, even it does not know the underlining property
+              of data structures {hides the underline property from the user, will keep on iterating}, does
+              not know size of the data structure
+
+4) Iterator should be able to manage the dynamic ability of the future data as much as possible{In future the
+   underlining data can be changed and we should be able to manage it}
+
+=> Based on the underline data structure, if the underlining data structure is thread safe then the iterators
+   are thread safe, if we are implementing the iterators on data structure which is not thread safe, then we
+   cannot guarantee thread safe here also. Ao  thread safe property depends on the data structure we are
+   implementing the iterator
+
+Eager evaluation => When everything is loaded in the memory, then it is eager evaluation eg: Suppose we load
+a BST in inorder traversal in a List in memory say in constructor then it is eager evaluation.
+
+In iterators, it should only know about the current element on which it is standing, it should not know all
+the future elements, it should not load everything in the memory, it has to evaluate the data structure lazily
+Suppose in future if the node gets deleted or value changes in BST and if we are using eager evaluation, the
+iterator won't point to the correct value, which means if the underlying data structure has dynamic ability
+then the iterators should allow that which can be handled using lazy evaluation
+
+
+
+
