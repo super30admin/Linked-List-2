@@ -1,0 +1,11 @@
+class Solution:
+    # Function to delete a node in the middle of a singly linked list.
+    def deleteNode(self, node):
+        #code here
+        if del_node is None or del_node.next is None:
+        raise ValueError("del_node cannot be None or the last node in the list")
+    
+        # Copy the value of the next node into the current node
+        del_node.val = del_node.next.val
+        # Skip the next node
+        del_node.next = del_node.next.next
