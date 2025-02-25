@@ -1,0 +1,8 @@
+Time Complexity : O(n)
+Space Complexity : O(1)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I will keep swapping the node values 1 step backward right from the node, which is to be deleted and once we reach the end of the linkedlist, we will delete the last node, thus shifting all the node values 1 step backward, thus not requiring to know the actual head value

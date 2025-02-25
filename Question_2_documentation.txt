@@ -1,0 +1,8 @@
+Time Complexity : O(n)
+Space Complexity : O(1)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+Cut the linkedlist into 2 halves, with second half having less than or equal number of nodes than the first half and reverse the second half. Then stitch the two list in an alternate fashion and return the final linkedlist

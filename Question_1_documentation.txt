@@ -1,0 +1,8 @@
+Time Complexity : O(n)
+Space Complexity : O(h)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I preprocessed the binary tree by preparing a sorted array out of BST by converting the BST into an inorder traversal list and then kept shifting the ptr from first to last
