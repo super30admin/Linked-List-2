@@ -1,0 +1,27 @@
+class BSTIterator {
+
+    // need a custom stack that store the curretn node
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    public BSTIterator(TreeNode root) {
+        dfs(root);
+    }
+
+    // custom dfs funciton that onyl traverses till the left most child 
+    private void dfs(TreeNode root){
+        while(root != null){
+            stack.push(root);
+            root = root.left;
+        }
+    }
+    public int next() {
+        // pop the top element(TreeNode) from stack 
+        //if the TreeNode from stack has right child - perform custom DFS of right Child 
+        TreeNode top = stack.pop();
+        dfs(top.right);
+        return top.val;
+    }
+    
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+}

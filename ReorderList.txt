@@ -1,0 +1,31 @@
+class Solution {
+    public void reorderList(ListNode head) {
+        ListNode slow = head ;
+        ListNode fast = head ;
+        // sub problem 1 : identify the mid of the linked list 
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        // sub problem 2 : reverse a linked list ( 2nd half in this case)
+        ListNode temp = slow.next;
+        slow.next = null; 
+        ListNode dummy = null;
+        while(temp != null){
+            ListNode prev = temp;
+            temp = temp.next; 
+            prev.next = dummy;
+            dummy = prev;
+        }
+        temp = dummy;
+        slow = head;
+        // sub problem 3 : merging two linked lists 
+        while(temp != null){
+            dummy = slow.next;
+            slow.next = temp;
+            temp = temp.next;
+            slow.next.next = dummy;
+            slow = dummy;
+        }
+    }
+}

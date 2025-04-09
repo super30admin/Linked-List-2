@@ -1,0 +1,37 @@
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int counterA = 0;
+        int counterB = 0; 
+        ListNode temp = null;
+        // loop for listA to capture the count 
+        temp = headA;
+        while(temp != null){
+            counterA++;
+            temp = temp.next;
+        }
+        // loop for listB to capture the count 
+        temp = headB;
+        while(temp != null){
+            counterB++;
+            temp = temp.next;
+        }
+
+        // loop  list A to match the smaller length list
+        while(counterA > counterB){
+            headA = headA.next;
+            counterA--;
+        }
+        // loop  list B to match the smaller length list
+        while(counterB > counterA){
+            headB = headB.next;
+            counterB--;
+        }
+        // loop to identify the intersection node
+        while(headA != null){
+            if(headA == headB) return headA; // this can be improved by directly checking if headA and headB are equal so we can stop the loop and  // this can even reduce the no.of comparision by half 
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+    }
+}
