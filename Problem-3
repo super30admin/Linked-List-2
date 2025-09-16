@@ -1,0 +1,32 @@
+// Time Complexity : O(1)
+// Space Complexity : O(1)
+
+// Copy the value of the next node to the node to be deleted
+// Now delete the next node
+
+/*
+class Node
+{
+    int data ;
+    Node next;
+    Node(int d)
+    {
+        data = d;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public void deleteNode(Node del_node) {
+        // code here
+        if(del_node.next == null)
+            del_node = null;
+        else {
+            Node nextNode = del_node.next;
+            del_node.data = nextNode.data;
+            del_node.next = nextNode.next;
+            nextNode.next = null;
+        }
+    }
+}

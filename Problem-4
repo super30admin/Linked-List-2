@@ -1,0 +1,55 @@
+// Time Complexity : O(m+n), where m->length of 1st list, n->length of 2nd list
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : None
+
+// Calculate length of both the lists
+// Move pointer of longer lists ahead to match the shorter list
+// Move both pointers together to check if they meet at a node and return it
+
+// Your code here along with comments explaining your approach
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lengthA = 0;
+        int lengthB = 0;
+        ListNode curr = headA;
+        // Calculate length of 1st list
+        while(curr != null) {
+            lengthA++;
+            curr = curr.next;
+        }
+        curr = headB;
+        // Calculate length of 2nd list
+        while(curr != null) {
+            lengthB++;
+            curr = curr.next;
+        }
+        // move pointer of longer list to match the shorter one
+        while(lengthA > lengthB) {
+            headA = headA.next;
+            lengthA--;
+        }
+        while(lengthA < lengthB) {
+            headB = headB.next;
+            lengthB--;
+        }
+        // move both pointers together to check if they meet
+        while(headA != headB) {
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+    }
+}
