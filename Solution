@@ -1,0 +1,69 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+ // TC- O(n)
+ // SC- O(1)
+
+ // Approach
+ // 1. Find middle of LL
+ // 2. Reverse second half of LL
+ // 3. Merge two LL and return head
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null || head.next==null){
+            return;
+        }
+
+        // 1. Find middle of LL
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // 2. Reverse second half of LL
+        fast = reverseLL(slow.next);
+        slow.next = null;        
+        // 3. Merge two LL
+        slow = head;
+
+        while(fast!=null){
+            ListNode tmp = slow.next;
+            slow.next = fast;
+            fast = fast.next;
+            slow.next.next = tmp;
+            slow = tmp;
+        }
+    }
+
+    // methos to reverse the LL
+    private ListNode reverseLL(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
+
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode fast = curr.next;
+
+        while(fast!=null){
+            curr.next = prev;
+            prev = curr;
+            curr = fast;
+            fast = fast.next;
+        }
+
+        curr.next = prev;
+        return curr;
+    }
+}
